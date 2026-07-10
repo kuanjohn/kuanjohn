@@ -1,3 +1,5 @@
+import { isContactUnlocked } from "./visitor.js";
+
 export async function initProjects() {
   const grid = document.getElementById("projects-grid");
   if (grid) {
@@ -84,6 +86,11 @@ export async function initProjects() {
     }
 
     function open(index) {
+      // Photos are gated behind the visitor unlock, same as contact details.
+      if (!isContactUnlocked()) {
+        document.dispatchEvent(new CustomEvent("jk:visitor-edit"));
+        return;
+      }
       show(index);
       lb.classList.add("open");
     }

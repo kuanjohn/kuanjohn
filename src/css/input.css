@@ -269,3 +269,24 @@ body {
   @apply right-4;
 }
 
+/* Gated photos — blurred until the visitor unlocks contact details */
+.gate-photo {
+  @apply relative;
+}
+.gate-photo.gate-blur {
+  @apply cursor-pointer;
+}
+.gate-photo.gate-blur img {
+  filter: blur(18px);
+  transform: scale(1.05);
+}
+.gate-photo.gate-blur::after {
+  content: "Locked — reveal";
+  @apply absolute inset-0 z-10 flex items-center justify-center text-xs font-medium uppercase tracking-wide text-fg/80;
+}
+
+/* Gated downloads — blocked until the visitor unlocks contact details */
+.gate-locked {
+  @apply cursor-pointer opacity-60;
+}
+

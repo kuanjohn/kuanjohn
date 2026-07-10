@@ -355,7 +355,7 @@ for i, p in enumerate(PROJECTS):
             ("04-screen.svg", "Detail panel"),
         ]
     for fname, cap in frames:
-        shots.append(f'''<button type="button" class="glass-card overflow-hidden p-0 text-left" data-full="/assets/projects/{p["slug"]}/{fname}" data-caption="{cap}">
+        shots.append(f'''<button type="button" class="gate-photo glass-card overflow-hidden p-0 text-left" data-gate-photo data-full="/assets/projects/{p["slug"]}/{fname}" data-caption="{cap}">
           <img src="/assets/projects/{p["slug"]}/{fname}" alt="{p["title"]} — {cap}" class="aspect-video w-full object-cover" loading="lazy" width="640" height="360"/>
           <p class="p-3 text-xs text-fg/50">{cap}</p></button>''')
     prev_p = PROJECTS[i - 1]
@@ -460,7 +460,7 @@ gallery_items = [
     ("/assets/gallery/nsx-conference.jpg", "Conference — NSX everywhere"),
     ("/assets/gallery/presidents-club-bahamas.jpg", "President's Club — Bahamas"),
 ]
-gal = "".join(f'''<button type="button" class="glass-card overflow-hidden p-0" data-full="{src}" data-caption="{label}">
+gal = "".join(f'''<button type="button" class="gate-photo glass-card overflow-hidden p-0" data-gate-photo data-full="{src}" data-caption="{label}">
   <img src="{src}" alt="{label}" class="aspect-[4/3] w-full object-cover" loading="lazy"/>
   <p class="p-3 text-left text-xs text-fg/50">{label}</p></button>''' for src, label in gallery_items)
 write("gallery.html", "Gallery — John Kuan", "Professional, conference, travel, lab, and lifestyle gallery.",
