@@ -15,7 +15,7 @@ HEAD = '''<!DOCTYPE html>
   <title>{title}</title>
   <meta name="description" content="{description}" />
   <meta name="theme-color" content="#05070A" />
-  <link rel="canonical" href="https://jkuan.jkuan.workers.dev{path}" />
+  <link rel="canonical" href="https://jkuan.kuan-john.workers.dev{path}" />
   <meta property="og:title" content="{title}" />
   <meta property="og:description" content="{description}" />
   <meta property="og:type" content="website" />
@@ -49,7 +49,7 @@ LD = json.dumps({
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "John Kuan",
-  "url": "https://jkuan.jkuan.workers.dev",
+  "url": "https://jkuan.kuan-john.workers.dev",
   "email": "kuan.john@gmail.com",
   "sameAs": ["https://www.linkedin.com/in/kuanjohn/", "https://github.com/kuanjohn"],
   "jobTitle": "Enterprise Technology Leader",
