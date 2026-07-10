@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0B0F14"/><stop offset="100%" stop-color="#1A222D"/></linearGradient></defs>
+  <rect width="800" height="600" fill="url(#g)"/>
+  <rect x="24" y="24" width="752" height="552" rx="20" fill="none" stroke="#22D3EE" stroke-opacity="0.3"/>
+  <text x="400" y="300" text-anchor="middle" fill="#fff" font-family="Syne,sans-serif" font-size="28">Hiking ridge</text>
+  <text x="400" y="340" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="Manrope,sans-serif" font-size="14">Gallery placeholder</text>
+</svg>

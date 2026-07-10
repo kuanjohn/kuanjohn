@@ -1,0 +1,20 @@
+{
+  "name": "kuanjohn",
+  "version": "1.0.0",
+  "private": true,
+  "description": "John Kuan — Executive portfolio on Cloudflare Workers",
+  "scripts": {
+    "dev": "npm run build && wrangler dev",
+    "build:css": "tailwindcss -i ./src/css/input.css -o ./public/css/styles.css --minify",
+    "build:js": "node scripts/copy-js.mjs",
+    "build:content": "node scripts/sync-content.mjs",
+    "build:pages": "python3 scripts/generate-pages.py",
+    "build": "npm run build:pages && npm run build:css && npm run build:js && npm run build:content",
+    "deploy": "npm run build && wrangler deploy",
+    "preview": "npm run build && wrangler dev"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17",
+    "wrangler": "^4.24.4"
+  }
+}

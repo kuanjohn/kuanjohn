@@ -1,0 +1,18 @@
+[
+  {"category":"AI","title":"Cursor agent workflows for enterprise delivery","summary":"How to structure agent prompts, skills, and review loops so AI accelerates Laravel and infrastructure delivery without sacrificing quality.","tags":["Cursor","Agents","Delivery"]},
+  {"category":"MCP","title":"MCP servers as operational leverage","summary":"Using Model Context Protocol tools (Cloudflare, docs, browser) to ground agents in real systems instead of hallucinated APIs.","tags":["MCP","Cloudflare","Agents"]},
+  {"category":"AI","title":"SOW copilots with Claude","summary":"Turning discovery facts into phased VMware Statements of Work with citation discipline and delivery best practices.","tags":["Anthropic","VMware","SOW"]},
+  {"category":"VMware","title":"VMware Cloud Foundation deal patterns","summary":"Seeding and expanding VCF in banking, telco, and government with governance-ready architectures.","tags":["VCF","Enterprise","ASEAN"]},
+  {"category":"VMware","title":"NSX use-case development","summary":"From zero pipeline to ELA: workshops, ROI framing, and workload coverage strategies for NSX.","tags":["NSX","Networking","Security"]},
+  {"category":"Cloud","title":"Hybrid cloud chargeback models","summary":"Inventory import, tagging, and chargeback project allocation for private and public cloud estates.","tags":["Chargeback","Hybrid","Ops"]},
+  {"category":"Networking","title":"Large-scale SD-WAN in banking","summary":"Lessons from a 560-site SD-WAN deployment — architecture, partner enablement, and executive sponsorship.","tags":["SD-WAN","Banking","Scale"]},
+  {"category":"Automation","title":"Terraform and Ansible in private cloud","summary":"Where IaC fits beside vRealize/Aria automation and when not to force a single tool.","tags":["Terraform","Ansible","Aria"]},
+  {"category":"Kubernetes","title":"Tanzu and VKS in enterprise estates","summary":"Positioning Kubernetes platforms next to traditional VM ops without creating two disconnected worlds.","tags":["Tanzu","K8s","Platform"]},
+  {"category":"Linux","title":"Linux operations for hybrid platforms","summary":"Hardening, observability hooks, and automation entry points for mixed Linux estates.","tags":["Linux","Ops"]},
+  {"category":"Windows","title":"Windows and Active Directory at scale","summary":"Messaging and directory migrations, resource forests, and enterprise AD design patterns.","tags":["AD","Exchange","Windows"]},
+  {"category":"Security","title":"Observability meets security with Splunk","summary":"Unifying detection, investigation, and digital resilience narratives for C-level buyers.","tags":["Splunk","SIEM","Security"]},
+  {"category":"DevOps","title":"Edge delivery on Cloudflare Workers","summary":"Static assets, thin workers, KV visit tracking, and free-tier production patterns.","tags":["Cloudflare","Workers","Edge"]},
+  {"category":"Architecture","title":"Enterprise architecture for multimillion outcomes","summary":"Connecting pre-sales architecture, partner ecosystems, and delivery governance.","tags":["EA","GTM","Leadership"]},
+  {"category":"Infrastructure","title":"Cost optimization without cutting resilience","summary":"Right-sizing, chargeback visibility, and platform consolidation plays.","tags":["FinOps","Optimization"]},
+  {"category":"Cursor","title":"Problem → tool → outcome method","summary":"A practical operating model for choosing Cursor, MCP, or LLM APIs based on the problem class.","tags":["Method","AI","Judgment"]}
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "slug": "cloudimesh",
+    "title": "CloudiMesh",
+    "pitch": "Multi-tenant hybrid cloud portal for VM workflows, chargeback, and platform governance.",
+    "tags": ["AI-built", "Enterprise", "Cloud"],
+    "stack": ["Laravel", "Livewire", "VMware", "Nutanix", "AWS", "Redis"],
+    "github": "https://github.com/kuanjohn/cloudimesh",
+    "demo": null,
+    "problemSolved": "Enterprises needed a single control plane for private and public cloud VM requests, inventory, and chargeback — without spreadsheet chaos.",
+    "aiTools": ["Cursor AI", "Agent workflows", "MCP"],
+    "featured": true
+  },
+  {
+    "slug": "crm",
+    "title": "CloudiMesh CRM",
+    "pitch": "Lead outreach system with AI qualification before sales handoff.",
+    "tags": ["AI-built", "Enterprise", "Sales"],
+    "stack": ["Laravel", "Livewire", "Anthropic", "Horizon"],
+    "github": "https://github.com/kuanjohn/crm",
+    "demo": null,
+    "problemSolved": "Qualify infrastructure leads at scale with AI chat scoring and automated campaign batches.",
+    "aiTools": ["Anthropic Claude", "Cursor AI", "Campaign automation"],
+    "featured": true
+  },
+  {
+    "slug": "propai",
+    "title": "PropAI",
+    "pitch": "Malaysian property management for landlords and tenants — rent, compliance, AI payment review.",
+    "tags": ["AI-built", "Product"],
+    "stack": ["Laravel", "Livewire", "Jetstream", "AI"],
+    "github": "https://github.com/kuanjohn/propai",
+    "demo": null,
+    "problemSolved": "Landlords needed calm ops for rent tracking, LHDN-aware expenses, and AI-assisted payment review.",
+    "aiTools": ["Cursor AI", "AI payment review"],
+    "featured": true
+  },
+  {
+    "slug": "ai-services-delivery",
+    "title": "AI Services Delivery",
+    "pitch": "AI-assisted VMware and infrastructure SOW generation with delivery copilots.",
+    "tags": ["AI-built", "Enterprise", "AI"],
+    "stack": ["Laravel", "Anthropic", "Livewire", "Reverb"],
+    "github": "https://github.com/kuanjohn/ai-services-delivery",
+    "demo": null,
+    "problemSolved": "Turn discovery facts into phased Statements of Work and task guidance for VMware delivery teams.",
+    "aiTools": ["Anthropic Claude", "Delivery copilots", "Cursor AI"],
+    "featured": true
+  },
+  {
+    "slug": "rangkaian-intelek",
+    "title": "Rangkaian Intelek Website",
+    "pitch": "Enterprise consulting site for cloud, security, and AI infrastructure — on Cloudflare.",
+    "tags": ["Edge", "Enterprise"],
+    "stack": ["Next.js", "Tailwind", "Cloudflare Pages"],
+    "github": "https://github.com/kuanjohn/rangkaian-intelek-website",
+    "demo": "https://www.rangkaianintelek.com",
+    "problemSolved": "Ship a premium corporate presence with static export and free-tier edge hosting.",
+    "aiTools": ["Cursor AI", "Cloudflare"],
+    "featured": false
+  },
+  {
+    "slug": "worldcup-predictor",
+    "title": "World Cup Predictor",
+    "pitch": "FIFA World Cup 2026 score predictions with virtual credits and leaderboards.",
+    "tags": ["AI-built", "Product"],
+    "stack": ["Laravel", "Livewire", "API-Football"],
+    "github": "https://github.com/kuanjohn/worldcup-predictor",
+    "demo": null,
+    "problemSolved": "Engage fans with exact-score predictions, wallets, referrals, and live match sync.",
+    "aiTools": ["Cursor AI", "Agent-accelerated Laravel"],
+    "featured": false
+  },
+  {
+    "slug": "onprem-engine",
+    "title": "CloudiMesh On-Prem Engine",
+    "pitch": "On-premises automation engine powering CloudiMesh private cloud operations.",
+    "tags": ["Enterprise", "Automation"],
+    "stack": ["PHP", "Automation", "Private Cloud"],
+    "github": "https://github.com/kuanjohn/cloudimesh-onprem-engine",
+    "demo": null,
+    "problemSolved": "Bridge portal workflows to on-prem hypervisors and automation runbooks.",
+    "aiTools": ["Cursor AI"],
+    "featured": false
+  }
+]

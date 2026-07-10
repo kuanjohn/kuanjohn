@@ -1,0 +1,33 @@
+import { mountLayout } from "./layout.js";
+import { initTheme } from "./theme.js";
+import { initHover } from "./hover.js";
+import { initParticles } from "./particles.js";
+import { initAnimations } from "./animations.js";
+import { initTimeline } from "./timeline.js";
+import { initCharts } from "./charts.js";
+import { initGraph } from "./graph.js";
+import { initProjects } from "./projects.js";
+import { initKnowledge } from "./knowledge.js";
+import { initBlog } from "./blog.js";
+import { initCommandPalette } from "./command-palette.js";
+import { initVisitor } from "./visitor.js";
+import { initContact } from "./contact.js";
+import { initPwa } from "./pwa.js";
+
+document.documentElement.classList.add("dark");
+
+mountLayout();
+initTheme();
+initHover();
+initParticles();
+initAnimations();
+initTimeline();
+initCharts();
+initGraph();
+initProjects();
+initKnowledge();
+initBlog();
+initCommandPalette();
+initVisitor();
+initContact();
+initPwa();

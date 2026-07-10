@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "cursor-mcp-delivery",
+    "title": "Cursor + MCP: Problem-Solving at Executive Speed",
+    "tags": [
+      "Cursor",
+      "MCP",
+      "AI",
+      "Delivery"
+    ],
+    "date": "2026-06-12",
+    "summary": "A practical operating model for shipping enterprise software with Cursor agents and MCP tools.",
+    "readingTime": 1,
+    "file": "cursor-mcp-delivery.md"
+  },
+  {
+    "slug": "ai-sow-copilots",
+    "title": "AI Copilots for VMware Statements of Work",
+    "tags": [
+      "AI",
+      "VMware",
+      "SOW",
+      "Anthropic"
+    ],
+    "date": "2026-05-20",
+    "summary": "How Claude-powered copilots turn discovery facts into phased VMware delivery Statements of Work.",
+    "readingTime": 1,
+    "file": "ai-sow-copilots.md"
+  },
+  {
+    "slug": "agentic-crm-qualification",
+    "title": "Agentic CRM Qualification for Infrastructure Sales",
+    "tags": [
+      "AI",
+      "CRM",
+      "Sales",
+      "Automation"
+    ],
+    "date": "2026-04-08",
+    "summary": "Qualifying infrastructure leads with AI chat scoring before human sales handoff.",
+    "readingTime": 1,
+    "file": "agentic-crm-qualification.md"
+  },
+  {
+    "slug": "enterprise-networking-asean",
+    "title": "Enterprise Networking Lessons from ASEAN Wins",
+    "tags": [
+      "VMware",
+      "NSX",
+      "SD-WAN",
+      "Enterprise"
+    ],
+    "date": "2026-03-15",
+    "summary": "Patterns from ASEAN banking and telco wins — VCF, NSX ELA, and a 560-site SD-WAN.",
+    "readingTime": 1,
+    "file": "enterprise-networking-asean.md"
+  }
+]

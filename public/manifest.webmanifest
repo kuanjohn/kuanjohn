@@ -1,0 +1,17 @@
+{
+  "name": "John Kuan",
+  "short_name": "John Kuan",
+  "description": "Enterprise Technology Leader & AI Builder",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05070A",
+  "theme_color": "#05070A",
+  "icons": [
+    {
+      "src": "/assets/icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

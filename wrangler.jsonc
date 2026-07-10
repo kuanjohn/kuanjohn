@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "kuanjohn",
+  "main": "worker.js",
+  "compatibility_date": "2026-07-10",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "drop-trailing-slash"
+  }
+  // Optional: after `wrangler kv namespace create VISITORS`, add:
+  // "kv_namespaces": [{ "binding": "VISITORS", "id": "<your-id>" }]
+}
