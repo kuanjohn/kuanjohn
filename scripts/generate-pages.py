@@ -15,7 +15,7 @@ HEAD = '''<!DOCTYPE html>
   <title>{title}</title>
   <meta name="description" content="{description}" />
   <meta name="theme-color" content="#05070A" />
-  <link rel="canonical" href="https://jkuan.kuan-john.workers.dev{path}" />
+  <link rel="canonical" href="https://me.jkuan.workers.dev{path}" />
   <meta property="og:title" content="{title}" />
   <meta property="og:description" content="{description}" />
   <meta property="og:type" content="website" />
@@ -49,7 +49,7 @@ LD = json.dumps({
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "John Kuan",
-  "url": "https://jkuan.kuan-john.workers.dev",
+  "url": "https://me.jkuan.workers.dev",
   "email": "kuan.john@gmail.com",
   "sameAs": ["https://www.linkedin.com/in/kuanjohn/", "https://github.com/kuanjohn"],
   "jobTitle": "Enterprise Technology Leader",
@@ -123,12 +123,12 @@ DETAILS = {
     "how": ["Next.js App Router static export", "Tailwind design system", "Lead capture patterns", "Cloudflare Pages / Workers deploy"],
   },
   "worldcup-predictor": {
-    "what": "Fans predict exact World Cup 2026 scores, stake virtual credits, climb leaderboards, and invite friends — entertainment product velocity with solid Laravel foundations.",
-    "how": ["Match sync from football APIs", "Wallet and betting settlement", "Leaderboards and referrals", "Admin sync and user management"],
+    "what": "Fans predict exact World Cup 2026 scores, stake virtual credits, climb leaderboards, and invite friends — live at fifa.cloudimesh.com with API-Football match sync.",
+    "how": ["Match sync from API-Football (league 1, season 2026)", "Wallet, stakes, and pool settlement", "Live leaderboards and referral bonuses", "Admin sync, fixtures, and user management"],
   },
   "onprem-engine": {
-    "what": "On-premises automation engine that connects CloudiMesh portal intents to private cloud runbooks and hypervisor operations.",
-    "how": ["Job queue for on-prem tasks", "Connector model for private cloud", "Operational logging", "Bridge between SaaS portal and datacenter"],
+    "what": "The CloudiMesh On-Prem Engine is a datacenter appliance that collects live vSphere inventory (an RvTools-equivalent), runs provisioning jobs against local hypervisors, and syncs a governed cloud catalog back to the CloudiMesh SaaS — with outbound-only traffic scoped to a single tenant and site.",
+    "how": ["RvTools-equivalent inventory sync from vCenter", "Cloud catalog mapping to CloudiMesh tenant", "Provisioning job queue with attempts & sync status", "Multi-hypervisor drivers (VMware, Nutanix, Huawei)", "Outbound-only engine API key per tenant/site", "Signed engine updates with snapshot and rollback"],
   },
 }
 
@@ -205,8 +205,8 @@ write("index.html", "John Kuan — Enterprise Technology Leader & AI Builder",
 </div></div></div></section>
 <section class="section-pad border-t border-line/5"><div class="container-max flex justify-between gap-6"><div><p class="eyebrow">Selected work</p><h2 class="display mt-3 text-3xl">Featured projects</h2></div><a href="/projects" class="btn-ghost">All projects</a></div>
 <div class="container-max mt-10 grid gap-6 md:grid-cols-2">
-<a href="/projects/cloudimesh" class="glass-card block overflow-hidden p-0" data-aos="fade-up"><img src="/assets/projects/cloudimesh/01-overview.svg" class="aspect-video w-full object-cover" alt="CloudiMesh" loading="lazy"/><div class="p-6"><h3 class="display text-xl">CloudiMesh</h3><p class="mt-2 text-sm text-fg/55">Hybrid cloud portal.</p></div></a>
-<a href="/projects/propai" class="glass-card block overflow-hidden p-0" data-aos="fade-up"><img src="/assets/projects/propai/01-overview.svg" class="aspect-video w-full object-cover" alt="PropAI" loading="lazy"/><div class="p-6"><h3 class="display text-xl">PropAI</h3><p class="mt-2 text-sm text-fg/55">Property ops + AI review.</p></div></a>
+<a href="/projects/cloudimesh" class="glass-card block overflow-hidden p-0" data-aos="fade-up"><img src="/assets/projects/cloudimesh/05-project-overview.png" class="aspect-video w-full object-cover" alt="CloudiMesh" loading="lazy"/><div class="p-6"><h3 class="display text-xl">CloudiMesh</h3><p class="mt-2 text-sm text-fg/55">Hybrid cloud portal.</p></div></a>
+<a href="/projects/propai" class="glass-card block overflow-hidden p-0" data-aos="fade-up"><img src="/assets/projects/propai/03-pnl.png" class="aspect-video w-full object-cover" alt="PropAI" loading="lazy"/><div class="p-6"><h3 class="display text-xl">PropAI</h3><p class="mt-2 text-sm text-fg/55">Property ops + AI review.</p></div></a>
 </div></section>
 <section class="section-pad border-t border-line/5"><div class="container-max"><p class="eyebrow">Work-life</p><h2 class="display mt-3 text-3xl">I work hard — and enjoy life</h2>
 <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{wl}</div>
@@ -269,7 +269,7 @@ write("about.html", "About — John Kuan", "Biography, leadership philosophy, AI
 </div></section>
 <section class="section-pad border-t border-line/5"><div class="container-max grid gap-6 md:grid-cols-2">
   <div class="glass-card p-6"><p class="eyebrow">Education</p><ul class="mt-4 space-y-3 text-sm text-fg/65"><li><strong class="text-fg">MBA</strong> — National University of Malaysia, CGPA 3.94 (May 2024)</li><li><strong class="text-fg">Bachelor’s</strong> — Computer Science / IT, University of Lincolnshire &amp; Humberside (1999)</li></ul></div>
-  <div class="glass-card p-6"><p class="eyebrow">Languages</p><p class="mt-4 text-sm text-fg/65">Excellent spoken and written English, Mandarin, Cantonese, and Bahasa.</p></div>
+  <div class="glass-card p-6"><p class="eyebrow">Languages</p><p class="mt-4 text-sm text-fg/65">Excellent spoken and written English, Mandarin, Cantonese, and Bahasa. Currently learning Japanese (beginner — about 5 months in).</p></div>
 </div></section>
 ''', "/about")
 
@@ -345,9 +345,16 @@ write("projects.html", "Projects — John Kuan", "AI-built and enterprise projec
 for i, p in enumerate(PROJECTS):
     d = DETAILS[p["slug"]]
     shots = []
-    for n in range(1, 5):
-        fname = "01-overview.svg" if n == 1 else f"0{n}-screen.svg"
-        cap = ["Overview", "Primary workflow", "Operations view", "Detail panel"][n - 1]
+    if p.get("screenshots"):
+        frames = [(s["file"], s["caption"]) for s in p["screenshots"]]
+    else:
+        frames = [
+            ("01-overview.svg", "Overview"),
+            ("02-screen.svg", "Primary workflow"),
+            ("03-screen.svg", "Operations view"),
+            ("04-screen.svg", "Detail panel"),
+        ]
+    for fname, cap in frames:
         shots.append(f'''<button type="button" class="glass-card overflow-hidden p-0 text-left" data-full="/assets/projects/{p["slug"]}/{fname}" data-caption="{cap}">
           <img src="/assets/projects/{p["slug"]}/{fname}" alt="{p["title"]} — {cap}" class="aspect-video w-full object-cover" loading="lazy" width="640" height="360"/>
           <p class="p-3 text-xs text-fg/50">{cap}</p></button>''')
@@ -358,6 +365,23 @@ for i, p in enumerate(PROJECTS):
     stack = "".join(f'<span class="chip">{t}</span>' for t in p["stack"])
     tags = "".join(f'<span class="chip">{t}</span>' for t in p["tags"])
     demo = f'<a href="{p["demo"]}" class="btn-ghost" target="_blank" rel="noopener">Demo</a>' if p.get("demo") else ""
+    shots_sub = f"Live product captures from {p['title']}." if p.get("screenshots") else "Labeled UI frames — replace with live captures anytime."
+    docs_section = ""
+    if p.get("documents"):
+        doc_cards = "".join(
+            f'''<a class="glass-card block p-6" href="/assets/projects/{p["slug"]}/{doc["file"]}" target="_blank" rel="noopener" download>
+          <div class="flex items-center justify-between gap-4">
+            <p class="text-base font-medium text-fg">{doc["label"]}</p>
+            <span class="chip shrink-0">Download</span>
+          </div>
+          <p class="mt-3 text-sm text-fg/55">{doc.get("caption", "")}</p></a>'''
+            for doc in p["documents"]
+        )
+        docs_section = f'''<section class="section-pad border-t border-line/5"><div class="container-max">
+  <p class="eyebrow">Sample deliverable</p><h2 class="display mt-3 text-3xl">Generated Statement of Work</h2>
+  <p class="mt-2 text-sm text-fg/40">A real document produced by the platform — download the sample below.</p>
+  <div class="mt-8 grid gap-4 sm:grid-cols-2">{doc_cards}</div>
+</div></section>'''
     write(f"projects/{p['slug']}.html", f"{p['title']} — Project Case Study", p["pitch"],
           f'''
 <section class="section-pad border-b border-line/5"><div class="container-max">
@@ -378,9 +402,10 @@ for i, p in enumerate(PROJECTS):
 </div></section>
 <section class="section-pad border-t border-line/5"><div class="container-max">
   <p class="eyebrow">Screenshots</p><h2 class="display mt-3 text-3xl">Product frames</h2>
-  <p class="mt-2 text-sm text-fg/40">Labeled UI frames — replace with live captures anytime.</p>
+  <p class="mt-2 text-sm text-fg/40">{shots_sub}</p>
   <div id="project-gallery" class="mt-8 grid gap-4 sm:grid-cols-2">{"".join(shots)}</div>
 </div></section>
+{docs_section}
 <section class="section-pad border-t border-line/5"><div class="container-max flex flex-wrap justify-between gap-4">
   <a class="link-draw" href="/projects/{prev_p["slug"]}">← {prev_p["title"]}</a>
   <a class="link-draw" href="/projects/{next_p["slug"]}">{next_p["title"]} →</a>
@@ -424,12 +449,22 @@ for slug, title in [
 ''', f"/blog/{slug}")
 
 # GALLERY
-gal = "".join(f'''<button type="button" class="glass-card overflow-hidden p-0" data-full="/assets/gallery/{i:02d}.svg" data-caption="{label}">
-  <img src="/assets/gallery/{i:02d}.svg" alt="{label}" class="aspect-[4/3] w-full object-cover" loading="lazy"/>
-  <p class="p-3 text-left text-xs text-fg/50">{label}</p></button>''' for i, label in enumerate(
-    ["Conference", "Home lab", "Architecture diagram", "Diving", "Golf", "Hiking", "Team", "Speaking"], 1))
+# (src, label). Real photos only.
+gallery_items = [
+    ("/assets/gallery/abujicuo.jpg", "Hiking ridge — Abujicuo, Yunnan"),
+    ("/assets/gallery/dungun-diving.jpg", "Diving & fishing — Dungun, Terengganu"),
+    ("/assets/gallery/tropicana-golf.jpg", "Golf — Tropicana"),
+    ("/assets/gallery/team-building.jpg", "Team building"),
+    ("/assets/gallery/vmware-signoff.jpg", "VMware — signing off from Malaysia"),
+    ("/assets/gallery/superbiking.jpg", "Superbiking"),
+    ("/assets/gallery/nsx-conference.jpg", "Conference — NSX everywhere"),
+    ("/assets/gallery/presidents-club-bahamas.jpg", "President's Club — Bahamas"),
+]
+gal = "".join(f'''<button type="button" class="glass-card overflow-hidden p-0" data-full="{src}" data-caption="{label}">
+  <img src="{src}" alt="{label}" class="aspect-[4/3] w-full object-cover" loading="lazy"/>
+  <p class="p-3 text-left text-xs text-fg/50">{label}</p></button>''' for src, label in gallery_items)
 write("gallery.html", "Gallery — John Kuan", "Professional, conference, travel, lab, and lifestyle gallery.",
-      page_hero("Gallery", "Work, stage, and life", "Placeholders for conferences, home lab, diagrams, and outdoor pursuits — swap in real photos anytime.")
+      page_hero("Gallery", "Work, stage, and life", "Moments from conferences and career milestones to travel, diving, golf, and the open road.")
       + f'<section class="section-pad pt-0"><div class="container-max"><div id="project-gallery" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{gal}</div></div></section>',
       "/gallery")
 
@@ -453,7 +488,6 @@ write("contact.html", "Contact — John Kuan", "Email, phone, LinkedIn, GitHub, 
     <a class="glass-card block p-8" href="https://github.com/kuanjohn" target="_blank" rel="noopener"><p class="eyebrow">GitHub</p><p class="display mt-3 text-2xl">kuanjohn →</p></a>
     <a class="glass-card block p-8 md:col-span-2" href="/assets/resume/John-Kuan-CV.pdf" download><p class="eyebrow">Resume</p><p class="display mt-3 text-2xl">Download PDF →</p></a>
   </div>
-  <div class="mt-6 glass-card flex min-h-[200px] items-center justify-center p-8"><div class="text-center"><p class="eyebrow">Map</p><p class="mt-3 text-fg/45">Kuala Lumpur / ASEAN — map placeholder</p></div></div>
 </div></section>
 ''', "/contact")
 

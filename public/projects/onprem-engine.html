@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CloudiMesh On-Prem Engine — Project Case Study</title>
-  <meta name="description" content="On-premises automation engine powering CloudiMesh private cloud operations." />
+  <meta name="description" content="On-premises appliance that syncs vSphere inventory, runs provisioning jobs, and bridges datacenter hypervisors to the CloudiMesh cloud." />
   <meta name="theme-color" content="#05070A" />
-  <link rel="canonical" href="https://jkuan.kuan-john.workers.dev/projects/onprem-engine" />
+  <link rel="canonical" href="https://me.jkuan.workers.dev/projects/onprem-engine" />
   <meta property="og:title" content="CloudiMesh On-Prem Engine — Project Case Study" />
-  <meta property="og:description" content="On-premises automation engine powering CloudiMesh private cloud operations." />
+  <meta property="og:description" content="On-premises appliance that syncs vSphere inventory, runs provisioning jobs, and bridges datacenter hypervisors to the CloudiMesh cloud." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="manifest" href="/manifest.webmanifest" />
@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@500;600;700&display=swap" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="/css/styles.css" />
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "John Kuan", "url": "https://jkuan.kuan-john.workers.dev", "email": "kuan.john@gmail.com", "sameAs": ["https://www.linkedin.com/in/kuanjohn/", "https://github.com/kuanjohn"], "jobTitle": "Enterprise Technology Leader"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "John Kuan", "url": "https://me.jkuan.workers.dev", "email": "kuan.john@gmail.com", "sameAs": ["https://www.linkedin.com/in/kuanjohn/", "https://github.com/kuanjohn"], "jobTitle": "Enterprise Technology Leader"}</script>
 </head>
 <body>
   <div id="progress-bar"></div>
@@ -27,33 +27,40 @@
   <main class="site-main">
 <section class="section-pad border-b border-line/5"><div class="container-max">
   <a href="/projects" class="link-draw text-sm">← All projects</a>
-  <div class="mt-6 flex flex-wrap gap-2"><span class="chip">Enterprise</span><span class="chip">Automation</span></div>
+  <div class="mt-6 flex flex-wrap gap-2"><span class="chip">Enterprise</span><span class="chip">Automation</span><span class="chip">Cloud</span></div>
   <h1 class="display mt-4 text-4xl md:text-6xl">CloudiMesh On-Prem Engine</h1>
-  <p class="mt-4 max-w-2xl text-lg text-fg/55">On-premises automation engine powering CloudiMesh private cloud operations.</p>
+  <p class="mt-4 max-w-2xl text-lg text-fg/55">On-premises appliance that syncs vSphere inventory, runs provisioning jobs, and bridges datacenter hypervisors to the CloudiMesh cloud.</p>
   <div class="mt-8 flex flex-wrap gap-3">
     <a href="https://github.com/kuanjohn/cloudimesh-onprem-engine" class="btn-primary" target="_blank" rel="noopener">GitHub</a>
   </div>
 </div></section>
 <section class="section-pad"><div class="container-max grid gap-12 lg:grid-cols-2">
-  <div><p class="eyebrow">What it does</p><p class="mt-4 text-fg/65">On-premises automation engine that connects CloudiMesh portal intents to private cloud runbooks and hypervisor operations.</p>
-  <p class="mt-6 text-sm text-accent-cyan/80">Problem solved</p><p class="mt-2 text-fg/55">Bridge portal workflows to on-prem hypervisors and automation runbooks.</p></div>
-  <div><p class="eyebrow">How it works</p><ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-fg/55"><li>Job queue for on-prem tasks</li><li>Connector model for private cloud</li><li>Operational logging</li><li>Bridge between SaaS portal and datacenter</li></ul>
-  <p class="mt-8 eyebrow">AI &amp; tools</p><div class="mt-3 flex flex-wrap gap-2"><span class="chip">Cursor AI</span></div>
-  <p class="mt-8 eyebrow">Stack</p><div class="mt-3 flex flex-wrap gap-2"><span class="chip">PHP</span><span class="chip">Automation</span><span class="chip">Private Cloud</span></div></div>
+  <div><p class="eyebrow">What it does</p><p class="mt-4 text-fg/65">The CloudiMesh On-Prem Engine is a datacenter appliance that collects live vSphere inventory (an RvTools-equivalent), runs provisioning jobs against local hypervisors, and syncs a governed cloud catalog back to the CloudiMesh SaaS — with outbound-only traffic scoped to a single tenant and site.</p>
+  <p class="mt-6 text-sm text-accent-cyan/80">Problem solved</p><p class="mt-2 text-fg/55">Bridge SaaS portal intents to on-prem hypervisors — collect live vSphere inventory, run provisioning jobs, and sync a governed catalog back to CloudiMesh, all with outbound-only traffic.</p></div>
+  <div><p class="eyebrow">How it works</p><ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-fg/55"><li>RvTools-equivalent inventory sync from vCenter</li><li>Cloud catalog mapping to CloudiMesh tenant</li><li>Provisioning job queue with attempts & sync status</li><li>Multi-hypervisor drivers (VMware, Nutanix, Huawei)</li><li>Outbound-only engine API key per tenant/site</li><li>Signed engine updates with snapshot and rollback</li></ul>
+  <p class="mt-8 eyebrow">AI &amp; tools</p><div class="mt-3 flex flex-wrap gap-2"><span class="chip">Cursor AI</span><span class="chip">Agent workflows</span></div>
+  <p class="mt-8 eyebrow">Stack</p><div class="mt-3 flex flex-wrap gap-2"><span class="chip">Laravel</span><span class="chip">VMware</span><span class="chip">Nutanix</span><span class="chip">RVTools</span><span class="chip">Private Cloud</span></div></div>
 </div></section>
 <section class="section-pad border-t border-line/5"><div class="container-max">
   <p class="eyebrow">Screenshots</p><h2 class="display mt-3 text-3xl">Product frames</h2>
-  <p class="mt-2 text-sm text-fg/40">Labeled UI frames — replace with live captures anytime.</p>
-  <div id="project-gallery" class="mt-8 grid gap-4 sm:grid-cols-2"><button type="button" class="glass-card overflow-hidden p-0 text-left" data-full="/assets/projects/onprem-engine/01-overview.svg" data-caption="Overview">
-          <img src="/assets/projects/onprem-engine/01-overview.svg" alt="CloudiMesh On-Prem Engine — Overview" class="aspect-video w-full object-cover" loading="lazy" width="640" height="360"/>
-          <p class="p-3 text-xs text-fg/50">Overview</p></button><button type="button" class="glass-card overflow-hidden p-0 text-left" data-full="/assets/projects/onprem-engine/02-screen.svg" data-caption="Primary workflow">
-          <img src="/assets/projects/onprem-engine/02-screen.svg" alt="CloudiMesh On-Prem Engine — Primary workflow" class="aspect-video w-full object-cover" loading="lazy" width="640" height="360"/>
-          <p class="p-3 text-xs text-fg/50">Primary workflow</p></button><button type="button" class="glass-card overflow-hidden p-0 text-left" data-full="/assets/projects/onprem-engine/03-screen.svg" data-caption="Operations view">
-          <img src="/assets/projects/onprem-engine/03-screen.svg" alt="CloudiMesh On-Prem Engine — Operations view" class="aspect-video w-full object-cover" loading="lazy" width="640" height="360"/>
-          <p class="p-3 text-xs text-fg/50">Operations view</p></button><button type="button" class="glass-card overflow-hidden p-0 text-left" data-full="/assets/projects/onprem-engine/04-screen.svg" data-caption="Detail panel">
-          <img src="/assets/projects/onprem-engine/04-screen.svg" alt="CloudiMesh On-Prem Engine — Detail panel" class="aspect-video w-full object-cover" loading="lazy" width="640" height="360"/>
-          <p class="p-3 text-xs text-fg/50">Detail panel</p></button></div>
+  <p class="mt-2 text-sm text-fg/40">Live product captures from CloudiMesh On-Prem Engine.</p>
+  <div id="project-gallery" class="mt-8 grid gap-4 sm:grid-cols-2"><button type="button" class="glass-card overflow-hidden p-0 text-left" data-full="/assets/projects/onprem-engine/01-inventory.png" data-caption="Inventory — RVTools-equivalent vSphere sync">
+          <img src="/assets/projects/onprem-engine/01-inventory.png" alt="CloudiMesh On-Prem Engine — Inventory — RVTools-equivalent vSphere sync" class="aspect-video w-full object-cover" loading="lazy" width="640" height="360"/>
+          <p class="p-3 text-xs text-fg/50">Inventory — RVTools-equivalent vSphere sync</p></button><button type="button" class="glass-card overflow-hidden p-0 text-left" data-full="/assets/projects/onprem-engine/02-cloud-catalog.png" data-caption="Cloud Catalog — tenant infrastructure mapping">
+          <img src="/assets/projects/onprem-engine/02-cloud-catalog.png" alt="CloudiMesh On-Prem Engine — Cloud Catalog — tenant infrastructure mapping" class="aspect-video w-full object-cover" loading="lazy" width="640" height="360"/>
+          <p class="p-3 text-xs text-fg/50">Cloud Catalog — tenant infrastructure mapping</p></button><button type="button" class="glass-card overflow-hidden p-0 text-left" data-full="/assets/projects/onprem-engine/03-provisioning-jobs.png" data-caption="Provisioning jobs — queued & synced work">
+          <img src="/assets/projects/onprem-engine/03-provisioning-jobs.png" alt="CloudiMesh On-Prem Engine — Provisioning jobs — queued & synced work" class="aspect-video w-full object-cover" loading="lazy" width="640" height="360"/>
+          <p class="p-3 text-xs text-fg/50">Provisioning jobs — queued & synced work</p></button><button type="button" class="glass-card overflow-hidden p-0 text-left" data-full="/assets/projects/onprem-engine/04-virtual-machines.png" data-caption="Virtual machines — provisioned across environments">
+          <img src="/assets/projects/onprem-engine/04-virtual-machines.png" alt="CloudiMesh On-Prem Engine — Virtual machines — provisioned across environments" class="aspect-video w-full object-cover" loading="lazy" width="640" height="360"/>
+          <p class="p-3 text-xs text-fg/50">Virtual machines — provisioned across environments</p></button><button type="button" class="glass-card overflow-hidden p-0 text-left" data-full="/assets/projects/onprem-engine/05-hypervisor-environments.png" data-caption="Hypervisor environments — multi-driver connectors">
+          <img src="/assets/projects/onprem-engine/05-hypervisor-environments.png" alt="CloudiMesh On-Prem Engine — Hypervisor environments — multi-driver connectors" class="aspect-video w-full object-cover" loading="lazy" width="640" height="360"/>
+          <p class="p-3 text-xs text-fg/50">Hypervisor environments — multi-driver connectors</p></button><button type="button" class="glass-card overflow-hidden p-0 text-left" data-full="/assets/projects/onprem-engine/06-cloudimesh-connection.png" data-caption="CloudiMesh connection — outbound engine API key">
+          <img src="/assets/projects/onprem-engine/06-cloudimesh-connection.png" alt="CloudiMesh On-Prem Engine — CloudiMesh connection — outbound engine API key" class="aspect-video w-full object-cover" loading="lazy" width="640" height="360"/>
+          <p class="p-3 text-xs text-fg/50">CloudiMesh connection — outbound engine API key</p></button><button type="button" class="glass-card overflow-hidden p-0 text-left" data-full="/assets/projects/onprem-engine/07-engine-updates.png" data-caption="Engine updates — signed releases with rollback">
+          <img src="/assets/projects/onprem-engine/07-engine-updates.png" alt="CloudiMesh On-Prem Engine — Engine updates — signed releases with rollback" class="aspect-video w-full object-cover" loading="lazy" width="640" height="360"/>
+          <p class="p-3 text-xs text-fg/50">Engine updates — signed releases with rollback</p></button></div>
 </div></section>
+
 <section class="section-pad border-t border-line/5"><div class="container-max flex flex-wrap justify-between gap-4">
   <a class="link-draw" href="/projects/worldcup-predictor">← World Cup Predictor</a>
   <a class="link-draw" href="/projects/cloudimesh">CloudiMesh →</a>

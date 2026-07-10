@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jkuan.kuan-john.workers.dev/sitemap.xml
+Sitemap: https://me.jkuan.workers.dev/sitemap.xml

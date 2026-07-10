@@ -13,7 +13,7 @@ export async function initProjects() {
           (p) => `
         <a href="/projects/${p.slug}" class="glass-card group block overflow-hidden p-0" data-aos="fade-up">
           <div class="relative aspect-[16/10] overflow-hidden bg-ink-100">
-            <img src="/assets/projects/${p.slug}/01-overview.svg" alt="${p.title} overview" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" width="640" height="400" />
+            <img src="${p.thumb || `/assets/projects/${p.slug}/01-overview.svg`}" alt="${p.title} overview" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" width="640" height="400" />
             <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent opacity-80"></div>
             <div class="absolute bottom-4 left-4 flex flex-wrap gap-2">${p.tags.map((t) => `<span class="chip">${t}</span>`).join("")}</div>
           </div>

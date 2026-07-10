@@ -9,7 +9,17 @@
     "demo": null,
     "problemSolved": "Enterprises needed a single control plane for private and public cloud VM requests, inventory, and chargeback — without spreadsheet chaos.",
     "aiTools": ["Cursor AI", "Agent workflows", "MCP"],
-    "featured": true
+    "featured": true,
+    "thumb": "/assets/projects/cloudimesh/05-project-overview.png",
+    "screenshots": [
+      { "file": "01-login.png", "caption": "Sign in — multi-tenant workspace" },
+      { "file": "02-create-project.png", "caption": "Create project — identity, budget & workload context" },
+      { "file": "03-add-vm.png", "caption": "Add VM — multi-cloud provider selection" },
+      { "file": "04-compute-sizing.png", "caption": "Compute sizing — VMware catalog plan & cost" },
+      { "file": "05-project-overview.png", "caption": "Project overview — chargeback & inventory" },
+      { "file": "06-firewall-rules.png", "caption": "Firewall rules — Day-2 operations" },
+      { "file": "07-request-history.png", "caption": "Request history — approval workflow" }
+    ]
   },
   {
     "slug": "crm",
@@ -21,7 +31,14 @@
     "demo": null,
     "problemSolved": "Qualify infrastructure leads at scale with AI chat scoring and automated campaign batches.",
     "aiTools": ["Anthropic Claude", "Cursor AI", "Campaign automation"],
-    "featured": true
+    "featured": true,
+    "thumb": "/assets/projects/crm/01-customers.png",
+    "screenshots": [
+      { "file": "01-customers.png", "caption": "Customers — buyer score bands & email status" },
+      { "file": "02-campaigns.png", "caption": "Campaigns — batch outreach with bounce tracking" },
+      { "file": "03-buyer-discovery.png", "caption": "Buyer discovery — LinkedIn & Google verification funnel" },
+      { "file": "04-email-delivery.png", "caption": "Email delivery — sent, bounced & invalid analytics" }
+    ]
   },
   {
     "slug": "propai",
@@ -30,10 +47,16 @@
     "tags": ["AI-built", "Product"],
     "stack": ["Laravel", "Livewire", "Jetstream", "AI"],
     "github": "https://github.com/kuanjohn/propai",
-    "demo": null,
+    "demo": "https://propai.cloudimesh.com",
     "problemSolved": "Landlords needed calm ops for rent tracking, LHDN-aware expenses, and AI-assisted payment review.",
     "aiTools": ["Cursor AI", "AI payment review"],
-    "featured": true
+    "featured": true,
+    "thumb": "/assets/projects/propai/03-pnl.png",
+    "screenshots": [
+      { "file": "01-landing.png", "caption": "Landing — AI-powered property management" },
+      { "file": "02-rent.png", "caption": "Property rent — tenant, lease & rent timeline" },
+      { "file": "03-pnl.png", "caption": "P&L — return yield, tax & monthly breakdown" }
+    ]
   },
   {
     "slug": "ai-services-delivery",
@@ -45,7 +68,26 @@
     "demo": null,
     "problemSolved": "Turn discovery facts into phased Statements of Work and task guidance for VMware delivery teams.",
     "aiTools": ["Anthropic Claude", "Delivery copilots", "Cursor AI"],
-    "featured": true
+    "featured": true,
+    "thumb": "/assets/projects/ai-services-delivery/08-sow-generated.png",
+    "documents": [
+      {
+        "file": "acme-vcf-9-upgrade-sow-v1.pdf",
+        "label": "ACME VCF 9 Upgrade — SOW v1 (PDF)",
+        "caption": "Sample AI-generated Statement of Work — 36-page phased VMware Cloud Foundation 9 delivery scope produced from discovery facts."
+      }
+    ],
+    "screenshots": [
+      { "file": "01-new-project.png", "caption": "New project — VMware discovery flow & customer" },
+      { "file": "02-ai-providers.png", "caption": "AI Providers — multi-provider config, keys encrypted at rest" },
+      { "file": "03-add-provider.png", "caption": "Add provider — model, budget & connection test" },
+      { "file": "04-discovery.png", "caption": "Discovery — AI scoping chat with confidence tracking" },
+      { "file": "05-discovery-facts.png", "caption": "Discovery — facts, risks & assumptions extracted live" },
+      { "file": "06-discovery-gaps.png", "caption": "Discovery — still-needed gaps & proposed assumptions" },
+      { "file": "07-sow-generating.png", "caption": "SOW generation — phased build runs in background" },
+      { "file": "08-sow-generated.png", "caption": "SOW v1 — executive summary with PDF / DOCX export" },
+      { "file": "09-ai-usage.png", "caption": "AI Usage — token spend by model & operation" }
+    ]
   },
   {
     "slug": "rangkaian-intelek",
@@ -71,21 +113,38 @@
     "tags": ["AI-built", "Product"],
     "stack": ["Laravel", "Livewire", "API-Football"],
     "github": "https://github.com/kuanjohn/worldcup-predictor",
-    "demo": null,
+    "demo": "https://fifa.cloudimesh.com",
     "problemSolved": "Engage fans with exact-score predictions, wallets, referrals, and live match sync.",
     "aiTools": ["Cursor AI", "Agent-accelerated Laravel"],
-    "featured": false
+    "featured": true,
+    "thumb": "/assets/projects/worldcup-predictor/01-landing.png",
+    "screenshots": [
+      { "file": "01-landing.png", "caption": "Landing — predict scores, win virtual credits" },
+      { "file": "02-dashboard.png", "caption": "Dashboard — credits, rank, referrals & predictions" },
+      { "file": "03-matches.png", "caption": "Matches — API-Football sync & fixture filters" },
+      { "file": "04-leaderboard.png", "caption": "Leaderboard — top 100, win rate & invite link" }
+    ]
   },
   {
     "slug": "onprem-engine",
     "title": "CloudiMesh On-Prem Engine",
-    "pitch": "On-premises automation engine powering CloudiMesh private cloud operations.",
-    "tags": ["Enterprise", "Automation"],
-    "stack": ["PHP", "Automation", "Private Cloud"],
+    "pitch": "On-premises appliance that syncs vSphere inventory, runs provisioning jobs, and bridges datacenter hypervisors to the CloudiMesh cloud.",
+    "tags": ["Enterprise", "Automation", "Cloud"],
+    "stack": ["Laravel", "VMware", "Nutanix", "RVTools", "Private Cloud"],
     "github": "https://github.com/kuanjohn/cloudimesh-onprem-engine",
     "demo": null,
-    "problemSolved": "Bridge portal workflows to on-prem hypervisors and automation runbooks.",
-    "aiTools": ["Cursor AI"],
-    "featured": false
+    "problemSolved": "Bridge SaaS portal intents to on-prem hypervisors — collect live vSphere inventory, run provisioning jobs, and sync a governed catalog back to CloudiMesh, all with outbound-only traffic.",
+    "aiTools": ["Cursor AI", "Agent workflows"],
+    "featured": true,
+    "thumb": "/assets/projects/onprem-engine/01-inventory.png",
+    "screenshots": [
+      { "file": "01-inventory.png", "caption": "Inventory — RVTools-equivalent vSphere sync" },
+      { "file": "02-cloud-catalog.png", "caption": "Cloud Catalog — tenant infrastructure mapping" },
+      { "file": "03-provisioning-jobs.png", "caption": "Provisioning jobs — queued & synced work" },
+      { "file": "04-virtual-machines.png", "caption": "Virtual machines — provisioned across environments" },
+      { "file": "05-hypervisor-environments.png", "caption": "Hypervisor environments — multi-driver connectors" },
+      { "file": "06-cloudimesh-connection.png", "caption": "CloudiMesh connection — outbound engine API key" },
+      { "file": "07-engine-updates.png", "caption": "Engine updates — signed releases with rollback" }
+    ]
   }
 ]
