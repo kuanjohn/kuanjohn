@@ -47,15 +47,15 @@ export function initGraph() {
         const na = nodes.find((n) => n.id === a);
         const nb = nodes.find((n) => n.id === b);
         const on = !hi || (hi.has(a) && hi.has(b));
-        return `<line x1="${na.x}" y1="${na.y}" x2="${nb.x}" y2="${nb.y}" stroke="${on ? "rgba(34,211,238,0.45)" : "rgba(255,255,255,0.06)"}" stroke-width="${on && hi ? 2 : 1}" />`;
+        return `<line x1="${na.x}" y1="${na.y}" x2="${nb.x}" y2="${nb.y}" stroke="${on ? "rgba(34,211,238,0.45)" : "currentColor"}" stroke-opacity="${on ? 1 : 0.1}" stroke-width="${on && hi ? 2 : 1}" />`;
       })
       .join("");
     const nodeSvg = nodes
       .map((n) => {
         const on = !hi || hi.has(n.id);
         return `<g class="graph-node cursor-pointer" data-id="${n.id}" opacity="${on ? 1 : 0.25}">
-          <circle cx="${n.x}" cy="${n.y}" r="${n.id === active ? 18 : 14}" fill="${n.id === active ? "#3B82F6" : "#11161D"}" stroke="#22D3EE" stroke-width="1.5" />
-          <text x="${n.x}" y="${n.y + 32}" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="11" font-family="Manrope,sans-serif">${n.id}</text>
+          <circle cx="${n.x}" cy="${n.y}" r="${n.id === active ? 18 : 14}" fill="${n.id === active ? "#3B82F6" : "rgb(var(--ink-100))"}" stroke="#22D3EE" stroke-width="1.5" />
+          <text x="${n.x}" y="${n.y + 32}" text-anchor="middle" fill="currentColor" fill-opacity="0.8" font-size="11" font-family="Manrope,sans-serif">${n.id}</text>
         </g>`;
       })
       .join("");

@@ -22,14 +22,14 @@ export function initCharts() {
         const a = (Math.PI * 2 * i) / n - Math.PI / 2;
         return `${cx + Math.cos(a) * r * s},${cy + Math.sin(a) * r * s}`;
       }).join(" ");
-      return `<polygon points="${g}" fill="none" stroke="rgba(255,255,255,0.08)" />`;
+      return `<polygon points="${g}" fill="none" stroke="currentColor" stroke-opacity="0.12" />`;
     })
     .join("");
 
   const axes = labels
     .map((_, i) => {
       const a = (Math.PI * 2 * i) / n - Math.PI / 2;
-      return `<line x1="${cx}" y1="${cy}" x2="${cx + Math.cos(a) * r}" y2="${cy + Math.sin(a) * r}" stroke="rgba(255,255,255,0.1)" />`;
+      return `<line x1="${cx}" y1="${cy}" x2="${cx + Math.cos(a) * r}" y2="${cy + Math.sin(a) * r}" stroke="currentColor" stroke-opacity="0.15" />`;
     })
     .join("");
 
@@ -38,7 +38,7 @@ export function initCharts() {
       const a = (Math.PI * 2 * i) / n - Math.PI / 2;
       const x = cx + Math.cos(a) * (r + 28);
       const y = cy + Math.sin(a) * (r + 28);
-      return `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" fill="rgba(255,255,255,0.65)" font-size="11" font-family="Manrope,sans-serif">${lab}</text>`;
+      return `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" fill="currentColor" fill-opacity="0.7" font-size="11" font-family="Manrope,sans-serif">${lab}</text>`;
     })
     .join("");
 
