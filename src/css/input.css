@@ -256,4 +256,16 @@ body {
 .lightbox.open {
   @apply flex;
 }
+.lb-nav {
+  @apply absolute top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-line/15 bg-ink-50/80 text-lg text-fg backdrop-blur transition;
+}
+.lb-nav:hover {
+  @apply border-accent-cyan/50 bg-ink-50;
+}
+.lb-prev {
+  @apply left-4;
+}
+.lb-next {
+  @apply right-4;
+}
 

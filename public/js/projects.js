@@ -41,26 +41,78 @@ export async function initProjects() {
 
   const gallery = document.getElementById("project-gallery");
   if (gallery) {
+    const frames = Array.from(gallery.querySelectorAll("button[data-full]")).map((btn) => ({
+      src: btn.dataset.full,
+      caption: btn.dataset.caption || "",
+    }));
+
     let lb = document.getElementById("lightbox");
     if (!lb) {
       lb = document.createElement("div");
       lb.id = "lightbox";
       lb.className = "lightbox";
-      lb.innerHTML = `<button type="button" class="absolute right-4 top-4 btn-ghost" id="lb-close">Close</button><img id="lb-img" class="max-h-[85vh] max-w-[92vw] rounded-xl" alt="" />`;
+      lb.innerHTML = `
+        <button type="button" class="absolute right-4 top-4 btn-ghost" id="lb-close">Close</button>
+        <button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>
+        <button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next">&#8594;</button>
+        <figure class="flex max-h-[90vh] max-w-[92vw] flex-col items-center gap-3">
+          <img id="lb-img" class="max-h-[80vh] max-w-[92vw] rounded-xl" alt="" />
+          <figcaption id="lb-caption" class="text-center text-sm text-fg/60"></figcaption>
+          <span id="lb-count" class="text-xs text-fg/40"></span>
+        </figure>`;
       document.body.appendChild(lb);
-      lb.addEventListener("click", (e) => {
-        if (e.target === lb || e.target.id === "lb-close") lb.classList.remove("open");
-      });
     }
-    gallery.querySelectorAll("button[data-full]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        document.getElementById("lb-img").src = btn.dataset.full;
-        document.getElementById("lb-img").alt = btn.dataset.caption || "";
-        lb.classList.add("open");
-      });
+
+    const lbImg = lb.querySelector("#lb-img");
+    const lbCaption = lb.querySelector("#lb-caption");
+    const lbCount = lb.querySelector("#lb-count");
+    const lbPrev = lb.querySelector("#lb-prev");
+    const lbNext = lb.querySelector("#lb-next");
+    let current = 0;
+
+    function show(index) {
+      if (!frames.length) return;
+      current = (index + frames.length) % frames.length;
+      const frame = frames[current];
+      lbImg.src = frame.src;
+      lbImg.alt = frame.caption;
+      lbCaption.textContent = frame.caption;
+      lbCount.textContent = frames.length > 1 ? `${current + 1} / ${frames.length}` : "";
+      const multi = frames.length > 1;
+      lbPrev.style.display = multi ? "" : "none";
+      lbNext.style.display = multi ? "" : "none";
+    }
+
+    function open(index) {
+      show(index);
+      lb.classList.add("open");
+    }
+
+    function close() {
+      lb.classList.remove("open");
+    }
+
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb || e.target.id === "lb-close") close();
     });
+    lbPrev.addEventListener("click", (e) => {
+      e.stopPropagation();
+      show(current - 1);
+    });
+    lbNext.addEventListener("click", (e) => {
+      e.stopPropagation();
+      show(current + 1);
+    });
+
+    gallery.querySelectorAll("button[data-full]").forEach((btn, i) => {
+      btn.addEventListener("click", () => open(i));
+    });
+
     window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") lb.classList.remove("open");
+      if (!lb.classList.contains("open")) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft") show(current - 1);
+      else if (e.key === "ArrowRight") show(current + 1);
     });
   }
 }
