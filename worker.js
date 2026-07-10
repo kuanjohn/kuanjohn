@@ -34,6 +34,46 @@ function json(data, status = 200, extra = {}) {
   });
 }
 
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+async function sendVisitorNotification(env, v) {
+  try {
+    const subject = `New site visitor: ${v.name || v.email}`;
+    const text =
+      `${v.name || "(no name)"} <${v.email}> just accessed your site.\n\n` +
+      `When: ${v.when}\nVisits: ${v.visits}\nIP: ${v.ip}\n` +
+      `Country: ${v.country}\nReferer: ${v.referer}\nUser-Agent: ${v.ua}\n`;
+    const html =
+      `<h2 style="margin:0 0 12px">New site visitor</h2>` +
+      `<p><strong>${escapeHtml(v.name || "(no name)")}</strong> ` +
+      `&lt;${escapeHtml(v.email)}&gt; just accessed your site.</p>` +
+      `<ul>` +
+      `<li><strong>When:</strong> ${escapeHtml(v.when)}</li>` +
+      `<li><strong>Visits:</strong> ${escapeHtml(String(v.visits))}</li>` +
+      `<li><strong>IP:</strong> ${escapeHtml(v.ip)}</li>` +
+      `<li><strong>Country:</strong> ${escapeHtml(v.country)}</li>` +
+      `<li><strong>Referer:</strong> ${escapeHtml(v.referer)}</li>` +
+      `<li><strong>User-Agent:</strong> ${escapeHtml(v.ua)}</li>` +
+      `</ul>`;
+    await env.EMAIL.send({
+      to: "kuan.john@gmail.com",
+      from: { email: "support@cloudimesh.com", name: "CloudiMesh Site" },
+      subject,
+      text,
+      html,
+    });
+  } catch (err) {
+    // Never let a mail failure break /api/visit
+    console.error("visitor email failed", err);
+  }
+}
+
 function rateLimited(ip) {
   const now = Date.now();
   const windowMs = 60_000;
@@ -48,7 +88,7 @@ function rateLimited(ip) {
   return entry.count > max;
 }
 
-async function handleVisit(request, env) {
+async function handleVisit(request, env, ctx) {
   if (request.method === "OPTIONS") {
     return new Response(null, { status: 204, headers: corsHeaders(request) });
   }
@@ -94,6 +134,23 @@ async function handleVisit(request, env) {
   };
   await env.VISITORS.put(key, JSON.stringify(record));
 
+  // Notify the owner the first time a visitor identifies with a new email.
+  const isNewEmail = !!email && !existing?.email;
+  if (isNewEmail && env.EMAIL) {
+    const notify = sendVisitorNotification(env, {
+      name: record.name,
+      email: record.email,
+      when: now,
+      visits: record.visits,
+      ip,
+      country: request.headers.get("CF-IPCountry") || "unknown",
+      ua: request.headers.get("User-Agent") || "unknown",
+      referer: request.headers.get("Referer") || "direct",
+    });
+    if (ctx && typeof ctx.waitUntil === "function") ctx.waitUntil(notify);
+    else await notify;
+  }
+
   return json({ ok: true, persisted: true, id: record.id, visits: record.visits }, 200, corsHeaders(request));
 }
 
@@ -113,11 +170,11 @@ function withHeaders(response) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
     if (url.pathname === "/api/visit") {
-      return handleVisit(request, env);
+      return handleVisit(request, env, ctx);
     }
 
     // Future: /api/contact, /api/chat, Workers AI

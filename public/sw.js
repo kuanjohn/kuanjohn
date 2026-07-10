@@ -1,4 +1,4 @@
-const CACHE = "jk-shell-v1";
+const CACHE = "jk-shell-v2";
 const ASSETS = ["/", "/css/styles.css", "/js/main.js", "/manifest.webmanifest"];
 
 self.addEventListener("install", (e) => {

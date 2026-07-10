@@ -2,61 +2,87 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Theme tokens as space-separated RGB channels so Tailwind color utilities
+ * (e.g. text-fg/70, bg-surface/5, border-line/10) resolve to the right value
+ * in each theme and still support opacity modifiers.
+ */
 :root {
-  --ink: #05070a;
-  --ink-50: #0b0f14;
-  --ink-100: #11161d;
-  --accent-blue: #3b82f6;
-  --accent-cyan: #22d3ee;
+  /* Dark theme (default) */
+  --ink: 8 10 14;
+  --ink-50: 13 17 23;
+  --ink-100: 20 25 33;
+  --ink-200: 30 37 48;
+  --ink-300: 44 54 68;
+
+  --text: 236 240 246;
+  --accent-blue: 96 165 250;
+  --accent-cyan: 45 212 238;
+  --accent-glow: 96 165 250;
+
+  --surface: 255 255 255;
+  --line: 255 255 255;
+
   --motion-fast: 150ms;
   --motion-med: 280ms;
   --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
-  --glass: rgba(17, 22, 29, 0.65);
-  --glass-border: rgba(34, 211, 238, 0.14);
+
+  --glass: rgba(18, 23, 31, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --page-gradient-a: rgba(59, 130, 246, 0.16);
+  --page-gradient-b: rgba(34, 211, 238, 0.1);
+  --page-gradient-c: rgba(59, 130, 246, 0.07);
+}
+
+html.light {
+  --ink: 245 247 251;
+  --ink-50: 255 255 255;
+  --ink-100: 238 242 248;
+  --ink-200: 226 232 240;
+  --ink-300: 203 213 225;
+
+  --text: 15 23 42;
+  --accent-blue: 37 99 235;
+  --accent-cyan: 14 116 144;
+  --accent-glow: 37 99 235;
+
+  --surface: 15 23 42;
+  --line: 15 23 42;
+
+  --glass: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(15, 23, 42, 0.1);
+  --page-gradient-a: rgba(37, 99, 235, 0.08);
+  --page-gradient-b: rgba(14, 116, 144, 0.06);
+  --page-gradient-c: rgba(37, 99, 235, 0.04);
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-html.light {
-  --ink: #f4f7fb;
-  --ink-50: #ffffff;
-  --ink-100: #eef2f7;
-  --glass: rgba(255, 255, 255, 0.72);
-  --glass-border: rgba(59, 130, 246, 0.2);
-}
-
 body {
-  @apply bg-ink text-white font-sans antialiased;
-  background-color: var(--ink);
+  @apply bg-ink font-sans antialiased;
+  color: rgb(var(--text));
   background-image:
-    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(59, 130, 246, 0.18), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(34, 211, 238, 0.12), transparent 50%),
-    radial-gradient(ellipse 50% 30% at 50% 100%, rgba(59, 130, 246, 0.08), transparent 60%);
+    radial-gradient(ellipse 80% 50% at 20% -10%, var(--page-gradient-a), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 90% 10%, var(--page-gradient-b), transparent 50%),
+    radial-gradient(ellipse 50% 30% at 50% 100%, var(--page-gradient-c), transparent 60%);
   background-attachment: fixed;
   min-height: 100vh;
 }
 
-html.light body {
-  @apply text-slate-900;
-  background-color: #f4f7fb;
-  background-image:
-    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(59, 130, 246, 0.12), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(34, 211, 238, 0.1), transparent 50%);
-}
-
 ::selection {
-  background: rgba(34, 211, 238, 0.35);
+  background: rgb(var(--accent-cyan) / 0.3);
+  color: rgb(var(--text));
 }
 
 @layer components {
   .glass {
     background: var(--glass);
     border: 1px solid var(--glass-border);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.5);
   }
 
   .glass-card {
@@ -64,32 +90,36 @@ html.light body {
   }
 
   .glass-card:hover {
-    @apply -translate-y-1 shadow-lift;
-    border-color: rgba(34, 211, 238, 0.28);
+    @apply -translate-y-0.5;
+    border-color: rgb(var(--accent-cyan) / 0.4);
+    box-shadow: 0 1px 0 0 rgb(var(--accent-cyan) / 0.18), 0 24px 48px -28px rgb(var(--accent-blue) / 0.4);
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent-blue to-accent-cyan px-6 py-3 text-sm font-semibold text-white transition-all duration-300 ease-premium;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-accent-blue to-accent-cyan px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-300 ease-premium;
   }
 
   .btn-primary:hover {
-    @apply brightness-110 shadow-lift;
+    @apply brightness-110;
+    box-shadow: 0 10px 28px -12px rgb(var(--accent-blue) / 0.6);
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white/90 transition-all duration-300 ease-premium;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-semibold transition-all duration-300 ease-premium;
+    color: rgb(var(--text) / 0.9);
+    border-color: rgb(var(--line) / 0.18);
+    background: rgb(var(--surface) / 0.04);
   }
 
   .btn-ghost:hover {
-    @apply border-accent-cyan/40 bg-white/10 text-white;
-  }
-
-  html.light .btn-ghost {
-    @apply border-slate-300 bg-white text-slate-800;
+    color: rgb(var(--text));
+    border-color: rgb(var(--accent-cyan) / 0.5);
+    background: rgb(var(--surface) / 0.09);
   }
 
   .link-draw {
-    @apply relative inline-flex items-center gap-1 text-white/70 transition-colors duration-300;
+    @apply relative inline-flex items-center gap-1 transition-colors duration-300;
+    color: rgb(var(--text) / 0.72);
   }
 
   .link-draw::after {
@@ -99,7 +129,8 @@ html.light body {
 
   .link-draw:hover,
   .link-draw:focus-visible {
-    @apply text-white outline-none;
+    @apply outline-none;
+    color: rgb(var(--text));
   }
 
   .link-draw:hover::after,
@@ -108,7 +139,11 @@ html.light body {
   }
 
   .section-pad {
-    @apply px-6 py-20 md:px-10 lg:px-16 lg:py-28;
+    @apply px-6 py-14 md:px-10 lg:px-16 lg:py-16;
+  }
+
+  .section-tight {
+    @apply px-6 py-10 md:px-10 lg:px-16 lg:py-12;
   }
 
   .container-max {
@@ -116,15 +151,20 @@ html.light body {
   }
 
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.22em] text-accent-cyan/80;
+    @apply text-xs font-semibold uppercase tracking-[0.22em];
+    color: rgb(var(--accent-cyan));
   }
 
   .display {
     @apply font-display font-semibold tracking-tight;
+    color: rgb(var(--text));
   }
 
   .chip {
-    @apply inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/75;
+    @apply inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium;
+    color: rgb(var(--text) / 0.8);
+    border-color: rgb(var(--line) / 0.14);
+    background: rgb(var(--surface) / 0.05);
   }
 
   .nav-link {
@@ -132,7 +172,8 @@ html.light body {
   }
 
   .progress-track {
-    @apply h-1.5 w-full overflow-hidden rounded-full bg-white/10;
+    @apply h-1.5 w-full overflow-hidden rounded-full;
+    background: rgb(var(--surface) / 0.12);
   }
 
   .progress-bar {
@@ -150,17 +191,14 @@ html.light body {
 
 #particle-canvas {
   @apply pointer-events-none fixed inset-0 z-0;
+  opacity: 0.6;
 }
 
 .site-main {
   @apply relative z-10;
 }
 
-.cursor-ring {
-  @apply pointer-events-none fixed left-0 top-0 z-[90] hidden h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border border-accent-cyan/50 mix-blend-difference md:block;
-  transition: width var(--motion-fast) var(--ease-premium), height var(--motion-fast) var(--ease-premium), opacity var(--motion-fast);
-}
-
+/* AOS safety: if AOS never runs (no JS / errors), keep content visible */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -171,6 +209,10 @@ html.light body {
   .animate-aurora,
   .animate-float {
     animation: none !important;
+  }
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
@@ -214,3 +256,4 @@ html.light body {
 .lightbox.open {
   @apply flex;
 }
+

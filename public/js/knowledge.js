@@ -42,7 +42,7 @@ export async function initKnowledge() {
       <article class="glass-card p-6" data-aos="fade-up">
         <p class="eyebrow">${d.category}</p>
         <h3 class="display mt-2 text-xl">${d.title}</h3>
-        <p class="mt-3 text-sm text-white/60">${d.summary}</p>
+        <p class="mt-3 text-sm text-fg/60">${d.summary}</p>
         <div class="mt-4 flex flex-wrap gap-2">${d.tags.map((t) => `<span class="chip">${t}</span>`).join("")}</div>
       </article>`
       )

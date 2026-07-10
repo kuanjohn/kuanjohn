@@ -11,6 +11,7 @@ import { initKnowledge } from "./knowledge.js";
 import { initBlog } from "./blog.js";
 import { initCommandPalette } from "./command-palette.js";
 import { initVisitor } from "./visitor.js";
+import { initGate } from "./gate.js";
 import { initContact } from "./contact.js";
 import { initPwa } from "./pwa.js";
 
@@ -29,5 +30,6 @@ initKnowledge();
 initBlog();
 initCommandPalette();
 initVisitor();
+initGate();
 initContact();
 initPwa();

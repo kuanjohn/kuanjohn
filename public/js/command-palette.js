@@ -19,9 +19,9 @@ export function initCommandPalette() {
     el.className = "cmdk";
     el.innerHTML = `
       <div class="glass w-full max-w-lg overflow-hidden rounded-2xl">
-        <input id="cmdk-input" type="search" placeholder="Search pages, actions…" class="w-full border-b border-white/10 bg-transparent px-5 py-4 text-sm outline-none" />
+        <input id="cmdk-input" type="search" placeholder="Search pages, actions…" class="w-full border-b border-line/10 bg-transparent px-5 py-4 text-sm outline-none" />
         <ul id="cmdk-list" class="max-h-72 overflow-auto p-2"></ul>
-        <p class="border-t border-white/10 px-4 py-2 text-xs text-white/35">↑↓ navigate · Enter open · Esc close</p>
+        <p class="border-t border-line/10 px-4 py-2 text-xs text-fg/35">↑↓ navigate · Enter open · Esc close</p>
       </div>`;
     document.body.appendChild(el);
   }
@@ -39,9 +39,9 @@ export function initCommandPalette() {
     list.innerHTML = filtered
       .map(
         (p, i) =>
-          `<li><button type="button" data-i="${i}" class="cmdk-item flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm ${i === active ? "bg-white/10" : "hover:bg-white/5"}"><span>${p.title}</span><span class="text-xs text-white/35">${p.href}</span></button></li>`
+          `<li><button type="button" data-i="${i}" class="cmdk-item flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm ${i === active ? "bg-surface/10" : "hover:bg-surface/5"}"><span>${p.title}</span><span class="text-xs text-fg/35">${p.href}</span></button></li>`
       )
-      .join("") || `<li class="px-3 py-4 text-sm text-white/40">No results</li>`;
+      .join("") || `<li class="px-3 py-4 text-sm text-fg/40">No results</li>`;
     list.querySelectorAll(".cmdk-item").forEach((btn) => {
       btn.addEventListener("click", () => run(Number(btn.dataset.i)));
     });

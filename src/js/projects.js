@@ -19,10 +19,10 @@ export async function initProjects() {
           </div>
           <div class="p-6">
             <h3 class="display text-xl">${p.title}</h3>
-            <p class="mt-2 text-sm text-white/60">${p.pitch}</p>
+            <p class="mt-2 text-sm text-fg/60">${p.pitch}</p>
             <p class="mt-4 text-xs text-accent-cyan/80">Problem → tools → outcome</p>
-            <p class="mt-1 text-sm text-white/50">${p.problemSolved}</p>
-            <span class="mt-5 inline-flex items-center gap-2 text-sm text-white link-draw">Open case study <span aria-hidden="true">→</span></span>
+            <p class="mt-1 text-sm text-fg/50">${p.problemSolved}</p>
+            <span class="mt-5 inline-flex items-center gap-2 text-sm text-fg link-draw">Open case study <span aria-hidden="true">→</span></span>
           </div>
         </a>`
         )
@@ -32,7 +32,7 @@ export async function initProjects() {
     filters.forEach((btn) => {
       btn.addEventListener("click", () => {
         active = btn.dataset.filter;
-        filters.forEach((b) => b.classList.toggle("bg-white/10", b === btn));
+        filters.forEach((b) => b.classList.toggle("bg-surface/10", b === btn));
         paint();
       });
     });

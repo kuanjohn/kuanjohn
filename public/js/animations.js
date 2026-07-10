@@ -2,7 +2,13 @@ const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matc
 
 export function initAnimations() {
   if (typeof AOS !== "undefined") {
-    AOS.init({ duration: 700, once: true, easing: "ease-out-cubic", disable: reduced() });
+    AOS.init({ duration: 600, once: true, offset: 40, easing: "ease-out-cubic", anchorPlacement: "top-bottom", disable: reduced() });
+  } else {
+    // Fallback: if AOS failed to load, never leave content stuck invisible.
+    document.querySelectorAll("[data-aos]").forEach((el) => {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+    });
   }
 
   // Rotating titles
@@ -62,15 +68,16 @@ export function initAnimations() {
     counters.forEach((c) => io.observe(c));
   }
 
-  // Hero entrance
+  // Hero entrance — animate transform only (never opacity) so content can
+  // never get stuck invisible if the tween stalls (e.g. background tab rAF).
   if (typeof gsap !== "undefined" && !reduced()) {
     gsap.from("[data-hero]", {
-      y: 28,
-      opacity: 0,
-      duration: 0.9,
-      stagger: 0.12,
+      y: 24,
+      duration: 0.8,
+      stagger: 0.1,
       ease: "power3.out",
-      delay: 0.1,
+      delay: 0.05,
+      clearProps: "transform",
     });
   }
 

@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "kuanjohn",
+  "name": "jkuan",
   "main": "worker.js",
   "compatibility_date": "2026-07-10",
   "assets": {
@@ -8,7 +8,15 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "drop-trailing-slash"
-  }
-  // Optional: after `wrangler kv namespace create VISITORS`, add:
+  },
+  // Email Sending binding used to notify the owner when a visitor identifies.
+  // Prerequisite: onboard the sender domain once with
+  //   npx wrangler email sending enable cloudimesh.com
+  // (the "from" address support@cloudimesh.com must belong to an onboarded domain).
+  "send_email": [{ "name": "EMAIL" }]
+
+  // Visitor tracking + email dedupe ("once per visitor") require KV.
+  // Create the namespace, then uncomment and paste the id:
+  //   npx wrangler kv namespace create VISITORS
   // "kv_namespaces": [{ "binding": "VISITORS", "id": "<your-id>" }]
 }

@@ -48,12 +48,12 @@ export async function initBlog() {
         .map(
           (p) => `
         <a href="/blog/${p.slug}" class="glass-card block p-6" data-aos="fade-up">
-          <div class="flex items-center justify-between gap-3 text-xs text-white/40">
+          <div class="flex items-center justify-between gap-3 text-xs text-fg/40">
             <span>${p.date}</span>
             <span>${p.readingTime} min read</span>
           </div>
           <h3 class="display mt-3 text-xl">${p.title}</h3>
-          <p class="mt-2 text-sm text-white/60">${p.summary}</p>
+          <p class="mt-2 text-sm text-fg/60">${p.summary}</p>
           <div class="mt-4 flex flex-wrap gap-2">${p.tags.map((t) => `<span class="chip">${t}</span>`).join("")}</div>
         </a>`
         )

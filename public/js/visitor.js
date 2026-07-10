@@ -13,6 +13,12 @@ function readLocal() {
   }
 }
 
+/** Contact details unlock only when the visitor has provided BOTH name and email. */
+export function isContactUnlocked() {
+  const d = readLocal();
+  return !!(d && d.name && d.email);
+}
+
 function writeLocal(data) {
   localStorage.setItem(STORAGE, JSON.stringify(data));
   const maxAge = 60 * 60 * 24 * 365;
@@ -59,6 +65,7 @@ function openModal(force = false) {
       if (email) email.value = data.email || "";
     }
   }
+  document.getElementById("visitor-name")?.focus();
 }
 
 function closeModal() {
@@ -69,45 +76,53 @@ function closeModal() {
 }
 
 export function initVisitor() {
-  // Ensure modal markup exists
   if (!document.getElementById("visitor-modal")) {
     const wrap = document.createElement("div");
     wrap.innerHTML = `
       <div id="visitor-modal" class="visitor-modal" aria-hidden="true" role="dialog" aria-labelledby="visitor-title">
         <div class="glass max-w-md w-full rounded-2xl p-8">
-          <p class="eyebrow">Welcome</p>
-          <h2 id="visitor-title" class="display mt-2 text-2xl">Optional introduction</h2>
-          <p class="mt-3 text-sm text-white/60">Share your name and email if you’d like — so the next visit feels personal. You can skip anytime.</p>
-          <form id="visitor-form" class="mt-6 space-y-4">
+          <p class="eyebrow">Introduce yourself</p>
+          <h2 id="visitor-title" class="display mt-2 text-2xl">Reveal contact details</h2>
+          <p class="mt-3 text-sm text-fg/60">Share your name and email to unlock John's email, phone, social links, and resume. It only takes a moment.</p>
+          <form id="visitor-form" class="mt-6 space-y-4" novalidate>
             <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <div>
-              <label class="text-xs text-white/50" for="visitor-name">Name</label>
-              <input id="visitor-name" name="name" type="text" class="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none focus:border-accent-cyan/50" placeholder="Optional" />
+              <label class="text-xs text-fg/55" for="visitor-name">Name</label>
+              <input id="visitor-name" name="name" type="text" required class="mt-1 w-full rounded-xl border border-line/12 bg-surface/5 px-4 py-3 text-sm text-fg outline-none focus:border-accent-cyan/50" placeholder="Your name" />
             </div>
             <div>
-              <label class="text-xs text-white/50" for="visitor-email">Email</label>
-              <input id="visitor-email" name="email" type="email" class="mt-1 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none focus:border-accent-cyan/50" placeholder="Optional" />
+              <label class="text-xs text-fg/55" for="visitor-email">Email</label>
+              <input id="visitor-email" name="email" type="email" required class="mt-1 w-full rounded-xl border border-line/12 bg-surface/5 px-4 py-3 text-sm text-fg outline-none focus:border-accent-cyan/50" placeholder="you@company.com" />
             </div>
+            <p id="visitor-error" class="hidden text-xs text-red-400"></p>
             <div class="flex flex-wrap gap-3 pt-2">
-              <button type="submit" class="btn-primary">Continue</button>
+              <button type="submit" class="btn-primary">Reveal contact</button>
               <button type="button" id="visitor-skip" class="btn-ghost">Skip for now</button>
             </div>
-            <p class="text-xs text-white/35">Stored locally and optionally on Cloudflare KV for visit counts. No marketing spam.</p>
+            <p class="text-xs text-fg/40">Stored locally and on Cloudflare KV for visit counts, and used to let John know you stopped by. No marketing spam.</p>
           </form>
         </div>
       </div>
-      <div id="welcome-back" class="pointer-events-none fixed bottom-6 left-1/2 z-[70] -translate-x-1/2 rounded-full border border-accent-cyan/30 bg-ink-50/90 px-4 py-2 text-sm text-white opacity-0 transition-opacity duration-500"></div>`;
+      <div id="welcome-back" class="pointer-events-none fixed bottom-6 left-1/2 z-[70] -translate-x-1/2 rounded-full border border-accent-cyan/30 bg-ink-50/90 px-4 py-2 text-sm text-fg opacity-0 transition-opacity duration-500"></div>`;
     document.body.appendChild(wrap);
   }
 
   const existing = readLocal();
-  if (existing?.seenAt) {
+  if (isContactUnlocked()) {
     showWelcomeBack(existing);
-    // ping visit count
-    persist(existing);
-  } else {
+    persist(existing); // ping visit count (worker dedupes email notification)
+  } else if (!existing?.seenAt) {
     setTimeout(() => openModal(false), 1500);
   }
+
+  const errorEl = () => document.getElementById("visitor-error");
+  const showError = (msg) => {
+    const el = errorEl();
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.remove("hidden");
+  };
+  const clearError = () => errorEl()?.classList.add("hidden");
 
   document.getElementById("visitor-form")?.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -116,23 +131,35 @@ export function initVisitor() {
       closeModal();
       return;
     }
+    const name = String(fd.get("name") || "").trim();
+    const email = String(fd.get("email") || "").trim();
+    if (!name || !email) {
+      showError("Please add both your name and email to reveal contact details.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError("Please enter a valid email address.");
+      return;
+    }
+    clearError();
     const data = {
       id: existing?.id || uuid(),
-      name: String(fd.get("name") || "").trim(),
-      email: String(fd.get("email") || "").trim(),
+      name,
+      email,
       seenAt: new Date().toISOString(),
     };
     writeLocal(data);
     await persist(data);
     closeModal();
     showWelcomeBack(data);
+    document.dispatchEvent(new CustomEvent("jk:contact-unlocked"));
   });
 
   document.getElementById("visitor-skip")?.addEventListener("click", async () => {
     const data = {
       id: existing?.id || uuid(),
-      name: "",
-      email: "",
+      name: existing?.name || "",
+      email: existing?.email || "",
       seenAt: new Date().toISOString(),
     };
     writeLocal(data);
