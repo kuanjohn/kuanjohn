@@ -57,7 +57,12 @@
     "demo": "https://www.rangkaianintelek.com",
     "problemSolved": "Ship a premium corporate presence with static export and free-tier edge hosting.",
     "aiTools": ["Cursor AI", "Cloudflare"],
-    "featured": false
+    "featured": false,
+    "thumb": "/assets/projects/rangkaian-intelek/01-home.png",
+    "screenshots": [
+      { "file": "01-home.png", "caption": "Home — transforming infrastructure through cloud, security & AI" },
+      { "file": "02-solutions.png", "caption": "Solutions — outcome-led offerings featuring Cloudimesh" }
+    ]
   },
   {
     "slug": "worldcup-predictor",
