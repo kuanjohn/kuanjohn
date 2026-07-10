@@ -16,5 +16,8 @@
   "devDependencies": {
     "tailwindcss": "^3.4.17",
     "wrangler": "^4.24.4"
+  },
+  "dependencies": {
+    "@ryyr/worker-mailer": "^0.2.0"
   }
 }

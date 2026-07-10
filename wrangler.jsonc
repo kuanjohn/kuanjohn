@@ -3,20 +3,24 @@
   "name": "me",
   "main": "worker.js",
   "compatibility_date": "2026-07-10",
+  // Required by worker-mailer to open SMTP connections over cloudflare:sockets.
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "drop-trailing-slash"
   },
-  // Email Sending binding used to notify the owner when a visitor identifies.
-  // Prerequisite: onboard the sender domain once with
-  //   npx wrangler email sending enable cloudimesh.com
-  // (the "from" address support@cloudimesh.com must belong to an onboarded domain).
-  "send_email": [{ "name": "EMAIL" }]
 
-  // Visitor tracking + email dedupe ("once per visitor") require KV.
-  // Create the namespace, then uncomment and paste the id:
-  //   npx wrangler kv namespace create VISITORS
-  // "kv_namespaces": [{ "binding": "VISITORS", "id": "<your-id>" }]
+  // Visitor tracking + email dedupe ("once per visitor").
+  "kv_namespaces": [{ "binding": "VISITORS", "id": "eaad46d8a4cd44dfa7b8f65e1fae4e4d" }],
+
+  // Owner notification email via SMTP (Gmail). The password is stored as an
+  // encrypted secret: `npx wrangler secret put SMTP_PASS` (never commit it).
+  "vars": {
+    "SMTP_HOST": "smtp.gmail.com",
+    "SMTP_PORT": "587",
+    "SMTP_USER": "support@cloudimesh.com",
+    "NOTIFY_TO": "kuan.john@gmail.com"
+  }
 }

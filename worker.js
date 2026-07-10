@@ -4,6 +4,8 @@
  * Future: /api/chat, D1, Workers AI — keep routes here.
  */
 
+import { WorkerMailer } from "@ryyr/worker-mailer";
+
 const SECURITY_HEADERS = {
   "X-Content-Type-Options": "nosniff",
   "X-Frame-Options": "DENY",
@@ -61,13 +63,24 @@ async function sendVisitorNotification(env, v) {
       `<li><strong>Referer:</strong> ${escapeHtml(v.referer)}</li>` +
       `<li><strong>User-Agent:</strong> ${escapeHtml(v.ua)}</li>` +
       `</ul>`;
-    await env.EMAIL.send({
-      to: "kuan.john@gmail.com",
-      from: { email: "support@cloudimesh.com", name: "CloudiMesh Site" },
-      subject,
-      text,
-      html,
+    const mailer = await WorkerMailer.connect({
+      host: env.SMTP_HOST,
+      port: Number(env.SMTP_PORT) || 587,
+      username: env.SMTP_USER,
+      password: env.SMTP_PASS,
+      authType: ["plain", "login"],
     });
+    try {
+      await mailer.send({
+        from: { name: "CloudiMesh Site", email: env.SMTP_USER },
+        to: env.NOTIFY_TO || env.SMTP_USER,
+        subject,
+        text,
+        html,
+      });
+    } finally {
+      await mailer.close();
+    }
   } catch (err) {
     // Never let a mail failure break /api/visit
     console.error("visitor email failed", err);
@@ -136,7 +149,7 @@ async function handleVisit(request, env, ctx) {
 
   // Notify the owner the first time a visitor identifies with a new email.
   const isNewEmail = !!email && !existing?.email;
-  if (isNewEmail && env.EMAIL) {
+  if (isNewEmail && env.SMTP_HOST && env.SMTP_PASS) {
     const notify = sendVisitorNotification(env, {
       name: record.name,
       email: record.email,
