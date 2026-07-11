@@ -1,5 +1,18 @@
 [
   {
+    "slug": "aiops-context-engine",
+    "title": "AIOps is a context problem, not a chatbot problem",
+    "tags": [
+      "CloudiMesh",
+      "AIOps",
+      "AI"
+    ],
+    "date": "2026-07-11",
+    "summary": "Why AIOps is a context problem, not a chatbot problem — and how CloudiMesh is built for it.",
+    "readingTime": 4,
+    "file": "aiops-context-engine.md"
+  },
+  {
     "slug": "cursor-mcp-delivery",
     "title": "Cursor + MCP: Problem-Solving at Executive Speed",
     "tags": [
