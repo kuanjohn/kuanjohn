@@ -69,15 +69,22 @@ async function sendVisitorNotification(env, v) {
       username: env.SMTP_USER,
       password: env.SMTP_PASS,
       authType: ["plain", "login"],
+      logLevel: env.SMTP_DEBUG ? "DEBUG" : "ERROR",
     });
     try {
-      await mailer.send({
+      const result = await mailer.send({
         from: { name: "CloudiMesh Site", email: env.SMTP_USER },
         to: env.NOTIFY_TO || env.SMTP_USER,
         subject,
         text,
         html,
       });
+      console.log("visitor email sent", JSON.stringify({
+        messageId: result?.messageId,
+        accepted: result?.accepted,
+        rejected: result?.rejected,
+        response: result?.response,
+      }));
     } finally {
       await mailer.close();
     }
