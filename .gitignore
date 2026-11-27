@@ -5,3 +5,7 @@ node_modules/
 *.log
 .turbo/
 dist/
+__pycache__/
+*.pyc
+# Original (un-stripped) journal photos: never commit these
+journal-inbox/
