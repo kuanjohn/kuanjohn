@@ -290,3 +290,81 @@ body {
   @apply cursor-pointer opacity-60;
 }
 
+
+/* ---------- Travel journal ---------- */
+/* Language toggle: <html data-jlang="en|zh|both">. Without JS nothing is hidden. */
+html[data-jlang="en"] .jl-zh,
+html[data-jlang="zh"] .jl-en {
+  display: none !important;
+}
+html[data-jlang="both"] span.jl-zh:not(:first-child)::before {
+  content: " · ";
+  opacity: 0.5;
+}
+html[data-jlang="both"] p.jl-zh,
+html[data-jlang="both"] h1 .jl-zh,
+html[data-jlang="both"] h2.jl-zh,
+html[data-jlang="both"] h3.jl-zh {
+  margin-top: 0.35rem;
+}
+html[data-jlang="both"] h1 span.jl-zh {
+  display: block;
+  font-size: 0.72em;
+  opacity: 0.85;
+}
+html[data-jlang="both"] h1 span.jl-zh:not(:first-child)::before {
+  content: none;
+}
+html[data-jlang="both"] div.jl-zh.journal-story {
+  @apply mt-8 border-t border-line/10 pt-8;
+}
+[lang="zh-Hans"] {
+  font-family: "Manrope", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Noto Sans CJK SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+.display[lang="zh-Hans"],
+.display [lang="zh-Hans"],
+h1 [lang="zh-Hans"] {
+  font-family: "Syne", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Noto Sans CJK SC", "Microsoft YaHei", system-ui, sans-serif;
+  letter-spacing: 0.02em;
+}
+.journal-story p + p {
+  @apply mt-5;
+}
+.jl-toggle {
+  @apply inline-flex rounded-full border border-line/15 bg-surface/5 p-1 text-xs font-semibold;
+}
+.jl-toggle button {
+  @apply rounded-full px-3 py-1.5 text-fg/60 transition;
+}
+.jl-toggle button:hover {
+  @apply text-fg;
+}
+.jl-toggle button[aria-pressed="true"] {
+  @apply bg-gradient-to-r from-accent-blue to-accent-cyan text-white;
+}
+.journal-photo {
+  break-inside: avoid;
+}
+.journal-photo img {
+  background: rgb(var(--surface) / 0.06);
+}
+.journal-cover-empty {
+  background:
+    radial-gradient(circle at 30% 30%, rgb(var(--accent-blue) / 0.18), transparent 60%),
+    radial-gradient(circle at 75% 70%, rgb(var(--accent-cyan) / 0.14), transparent 55%),
+    rgb(var(--surface) / 0.04);
+}
+.journal-card-empty {
+  @apply opacity-70;
+}
+.journal-sample-banner {
+  @apply mt-6 rounded-2xl border border-dashed px-4 py-3 text-sm font-medium;
+  border-color: rgb(251 191 36 / 0.6);
+  background: rgb(251 191 36 / 0.1);
+  color: rgb(var(--text) / 0.85);
+}
+.journal-lightbox {
+  background: rgb(5 7 10 / 0.97);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}

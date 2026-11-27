@@ -1,4 +1,4 @@
-const CACHE = "jk-shell-v2";
+const CACHE = "jk-shell-v3";
 const ASSETS = ["/", "/css/styles.css", "/js/main.js", "/manifest.webmanifest"];
 
 self.addEventListener("install", (e) => {
@@ -11,21 +11,34 @@ self.addEventListener("activate", (e) => {
   );
 });
 
+function putInCache(request, res) {
+  if (res.ok && request.url.startsWith(self.location.origin)) {
+    const copy = res.clone();
+    caches.open(CACHE).then((c) => c.put(request, copy));
+  }
+  return res;
+}
+
 self.addEventListener("fetch", (e) => {
   const { request } = e;
   if (request.method !== "GET") return;
-  e.respondWith(
-    caches.match(request).then((cached) =>
-      cached ||
+  const url = new URL(request.url);
+  // Pages, data and scripts/styles change on every deploy (e.g. a new journal day each evening):
+  // network-first so visitors see fresh content, with the cache as an offline fallback.
+  const fresh =
+    request.mode === "navigate" ||
+    (request.headers.get("accept") || "").includes("text/html") ||
+    /\.(html|json|js|css|xml)$/.test(url.pathname);
+  if (fresh) {
+    e.respondWith(
       fetch(request)
-        .then((res) => {
-          const copy = res.clone();
-          if (res.ok && request.url.startsWith(self.location.origin)) {
-            caches.open(CACHE).then((c) => c.put(request, copy));
-          }
-          return res;
-        })
-        .catch(() => cached)
-    )
+        .then((res) => putInCache(request, res))
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
+  // Images, fonts, etc.: cache-first (journal photos have content-hashed names).
+  e.respondWith(
+    caches.match(request).then((cached) => cached || fetch(request).then((res) => putInCache(request, res)).catch(() => cached))
   );
 });

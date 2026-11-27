@@ -1,0 +1,20 @@
+{
+  "slug": "china-2026",
+  "title_en": "China with the kids",
+  "title_zh": "带孩子们游中国",
+  "subtitle_en": "Two weeks, two capitals: Xi'an's ancient walls and Beijing in winter. A father-and-teens journal, written one evening at a time.",
+  "subtitle_zh": "两周，两座古都：西安的城墙与冬日的北京。一位父亲和两个少年的旅行日记，每晚更新一篇。",
+  "start": "2026-12-02",
+  "end": "2026-12-15",
+  "media_base": "/assets/journal/china-2026",
+  "cities": {
+    "xian": { "en": "Xi'an", "zh": "西安" },
+    "beijing": { "en": "Beijing", "zh": "北京" },
+    "xian-beijing": { "en": "Xi'an → Beijing", "zh": "西安 → 北京" }
+  },
+  "itinerary": [
+    { "from": "2026-12-02", "to": "2026-12-07", "city": "xian" },
+    { "from": "2026-12-08", "to": "2026-12-08", "city": "xian-beijing" },
+    { "from": "2026-12-09", "to": "2026-12-15", "city": "beijing" }
+  ]
+}

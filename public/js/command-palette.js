@@ -7,6 +7,7 @@ const PAGES = [
   { title: "Knowledge", href: "/knowledge", keywords: "library vmware mcp cursor" },
   { title: "Blog", href: "/blog", keywords: "articles posts" },
   { title: "Gallery", href: "/gallery", keywords: "photos lab" },
+  { title: "Travel journal — China 2026", href: "/journal/china-2026", keywords: "journal travel china xian beijing trip diary 旅行 日记 西安 北京" },
   { title: "Contact", href: "/contact", keywords: "email phone linkedin resume" },
   { title: "Update visitor profile", href: "#visitor", keywords: "name email remember" },
   { title: "Toggle theme", href: "#theme", keywords: "dark light" },

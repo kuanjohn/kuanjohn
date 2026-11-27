@@ -1,0 +1,54 @@
+{
+  "date": "sample",
+  "sample": true,
+  "city": "xian",
+  "title_en": "Sample entry: how a day will look",
+  "title_zh": "示例：每日日记的样子",
+  "story_en": "This is a placeholder story. Each evening during the trip, this space will hold a few paragraphs about the day: where we went, what surprised us, and how it felt to see it together.\n\nA blank line starts a new paragraph. Stories can be short or long; the page adapts on phones and large screens.\n\nThe photos below are generated placeholders. Tap any photo to open it full screen and swipe through the rest.",
+  "story_zh": "这是一段占位文字。旅行期间的每个晚上，这里会写上几段当天的故事：去了哪里、有什么惊喜、一起看到这些风景时的感受。\n\n空一行即开始新的段落。故事可长可短，在手机和大屏幕上都能自适应显示。\n\n下面的照片是生成的占位图。点击任意照片可全屏查看，并左右滑动浏览其余照片。",
+  "cover": 0,
+  "photos": [
+    {
+      "file": "01-541869ce",
+      "w": 1600,
+      "h": 1067,
+      "caption_en": "Placeholder: a wide landscape shot",
+      "caption_zh": "占位图：横幅风景"
+    },
+    {
+      "file": "02-8d96d4d5",
+      "w": 1067,
+      "h": 1600,
+      "caption_en": "Placeholder: a portrait photo",
+      "caption_zh": "占位图：竖幅照片"
+    },
+    {
+      "file": "03-65e3e7ce",
+      "w": 1600,
+      "h": 1200,
+      "caption_en": "Placeholder: 4:3 snapshot",
+      "caption_zh": "占位图：4:3 随手拍"
+    },
+    {
+      "file": "04-b317406e",
+      "w": 1600,
+      "h": 1600,
+      "caption_en": "Placeholder: square photo",
+      "caption_zh": "占位图：方形照片"
+    },
+    {
+      "file": "05-631785c2",
+      "w": 1600,
+      "h": 1067,
+      "caption_en": "Placeholder: another landscape",
+      "caption_zh": "占位图：另一张横幅"
+    },
+    {
+      "file": "06-4b5e2804",
+      "w": 1200,
+      "h": 1600,
+      "caption_en": "",
+      "caption_zh": ""
+    }
+  ]
+}

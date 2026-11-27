@@ -145,7 +145,22 @@ def page_hero(eyebrow, title, lead):
 
 
 # HOME
-wl = "".join(f'<div class="glass-card p-5" data-aos="fade-up"><p class="display text-lg">{a}</p></div>' for a, _ in WORKLIFE[:9])
+# Travel and Photography link to the travel journal; the rest stay plain tiles.
+WORKLIFE_LINKS = {
+  "Travel": ("/journal/china-2026", "China 2026 journal · 中国旅行日记 →"),
+  "Photography": ("/journal/china-2026", "Daily photo stories →"),
+}
+
+
+def wl_tile(a):
+    if a in WORKLIFE_LINKS:
+        href, cta = WORKLIFE_LINKS[a]
+        return (f'<a href="{href}" class="glass-card block p-5" data-aos="fade-up"><p class="display text-lg">{a}</p>'
+                f'<span class="link-draw mt-2 text-xs text-accent-cyan">{cta}</span></a>')
+    return f'<div class="glass-card p-5" data-aos="fade-up"><p class="display text-lg">{a}</p></div>'
+
+
+wl = "".join(wl_tile(a) for a, _ in WORKLIFE[:9])
 write("index.html", "John Kuan — Enterprise Technology Leader & AI Builder",
       "Enterprise technology leader and AI-native problem solver.",
       f'''
@@ -217,7 +232,11 @@ write("index.html", "John Kuan — Enterprise Technology Leader & AI Builder",
 ''', "/")
 
 # ABOUT
-wl_full = "".join(f'<article class="glass-card p-6" data-aos="fade-up"><h3 class="display text-xl">{t}</h3><p class="mt-3 text-sm text-fg/55">{d}</p></article>' for t, d in WORKLIFE)
+wl_full = "".join(
+    (f'<a href="{WORKLIFE_LINKS[t][0]}" class="glass-card block p-6" data-aos="fade-up"><h3 class="display text-xl">{t}</h3><p class="mt-3 text-sm text-fg/55">{d}</p><span class="link-draw mt-3 text-xs text-accent-cyan">{WORKLIFE_LINKS[t][1]}</span></a>')
+    if t in WORKLIFE_LINKS else
+    f'<article class="glass-card p-6" data-aos="fade-up"><h3 class="display text-xl">{t}</h3><p class="mt-3 text-sm text-fg/55">{d}</p></article>'
+    for t, d in WORKLIFE)
 write("about.html", "About — John Kuan", "Biography, leadership philosophy, AI operating model, and work-life balance.",
       page_hero("About", "Enterprise judgment. AI leverage.", "Twenty-plus years closing and architecting enterprise technology outcomes — now paired with hands-on AI tooling that ships real systems.")
       + f'''
@@ -465,6 +484,7 @@ gal = "".join(f'''<button type="button" class="gate-photo glass-card overflow-hi
   <p class="p-3 text-left text-xs text-fg/50">{label}</p></button>''' for src, label in gallery_items)
 write("gallery.html", "Gallery — John Kuan", "Professional, conference, travel, lab, and lifestyle gallery.",
       page_hero("Gallery", "Work, stage, and life", "Moments from conferences and career milestones to travel, diving, golf, and the open road.")
+      + '<section class="section-pad pt-0 pb-6"><div class="container-max"><a href="/journal/china-2026" class="glass-card flex flex-wrap items-center justify-between gap-3 p-5"><span><span class="eyebrow">New · Travel journal</span><span class="display mt-1 block text-lg">China with the kids · Xi&#39;an &amp; Beijing, Dec 2026</span></span><span class="link-draw text-sm">Read the journal →</span></a></div></section>'
       + f'<section class="section-pad pt-0"><div class="container-max"><div id="project-gallery" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{gal}</div></div></section>',
       "/gallery")
 
@@ -497,5 +517,12 @@ write("404.html", "Not found — John Kuan", "Page not found.",
   <p class="eyebrow">404</p><h1 class="display mt-4 text-5xl">This page drifted offline</h1>
   <p class="mt-4 text-fg/55">Try the command palette (⌘K) or head home.</p>
   <a href="/" class="btn-primary mt-8 inline-flex">Home</a></div></section>''', "/404")
+
+# TRAVEL JOURNAL (content/journal/<trip>/...) -> /journal/...
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from journal import build_journal  # noqa: E402
+
+build_journal(write)
 
 print("All pages generated.")

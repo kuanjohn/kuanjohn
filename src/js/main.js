@@ -14,6 +14,7 @@ import { initVisitor } from "./visitor.js";
 import { initGate } from "./gate.js";
 import { initContact } from "./contact.js";
 import { initPwa } from "./pwa.js";
+import { initJournal } from "./journal.js";
 
 document.documentElement.classList.add("dark");
 
@@ -33,3 +34,4 @@ initVisitor();
 initGate();
 initContact();
 initPwa();
+initJournal();
